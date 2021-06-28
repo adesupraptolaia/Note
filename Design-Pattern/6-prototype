@@ -1,0 +1,7 @@
+- prototype design pattern adalah dimana kita bisa ngecloning instance object lain
+- jadi misalnya kita bikin object Store1
+- lalu kita bisa bikin object Store2 dengan ngeclone object Store1
+- tinggal kita ubah beberapa field dari Store1 yang lebih sesuai untuk Store2
+
+- tentunaya tiap bahasa pemograman ada implementasi ini
+- jadi bisa menyesuaikan cara masing-masing bahasa pemograman 

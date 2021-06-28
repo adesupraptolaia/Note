@@ -1,0 +1,9 @@
+- Repository Pattern konsepnya adalah menggabungkan semua logic suatu database ke dalam suatu class
+- Biasanya implementasinya adalah, tiap table akan ada Class Repository nya tersendiri...
+- Tiap Class Repository tsb berisi semua logika ataupun perintah sql yang berhubungan dengan Table tsb
+
+- Bisanya didalam ClassRepository itu akan berisi method update, delete, insert, ataupun select
+- tapi ya khusus table dari class tsb
+
+- jadi akan ada class ProductRepository ==> berisi perintah sql untuk table product ===> update, delete, insert, ataupun select
+- akan ada class OrderRepository ===> berisi perintah sql untuk table order ===> update, delete, insert, ataupun select

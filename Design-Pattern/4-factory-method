@@ -1,0 +1,38 @@
+- factory method dipakai ketika instance suatu class 'jenis-jenis' nya terbatas ataupun tertentu,
+- jadi tiap kali  kita buat new instance-class maka akan berputar diantara 'jenis-jenis' yang sedit tadi..
+- misalnya, class Employee..
+- kemungkinan yang terjadi Empolyee-Manager, Employee-Leader, Employee-Senior, Employee-Middle, Employee-Junior, dll
+- yang mana, tiap jenis ini sudah ada standarnya, paling yang berbeda 'misalnya' hanya bagian 'nama'
+- sedangkan bagiannya sama, seperti gaji, benefit, struktur dalam organisasi, dll
+
+awalnya ===> manager1 = new Manager("nama_manager1", "Manager", "25.000.000")
+        ===> manager2 = new Manager("nama_manager2", "Manager", "25.000.000")
+
+menjadi ===> manager1 = EmployeeFactory.CreateManager("nama_manager1")
+        ===> manager2 = EmployeeFactory.CreateManager("nama_manager2")
+
+- intinya factory method dipakai ketika jenis-jenis implementasinya sudah ada standarnya
+- jadi tanpa harus menulis ulang standar2 yang sama itu di new-instance-class, maka cukup dibikin di factory method.
+
+- case lain yang bisa menerapkan factory method
+
+- misalnya ada interface Animal
+- lalu ada beberapa class implementasinya : Tiger, Cat, Dog
+
+--- cara penerapannya
+- bikin class baru AnimalFactory
+- cukup bikin 1 method 'create' yang ngereturn interface-Animal
+- parameter method 'create' ini bisa pakai 'name' aja, yang harapannya nanti cukup pake if else
+- misal if name=tiger return new-object-tiger, else if name=cat return new-object-cat, dll
+
+awalnya ===> tiger = new Tiger()
+        ===> cat = new Cat()
+        ===> dog = new Dog()
+
+menjadi ===> tiger = AnimalFactory.Create("Tiger")
+        ===> cat = AnimalFactory.Create("Cat")
+        ===> dog = AnimalFactory.Create("Dog")
+
+- keuntungannya apa?
+- misalnya if new Tiger() ganti menjadi new Tiger2() karena suatu hal
+- maka cukup ubah di AnimalFactory method 'create' if name=tiger return new-object-tiger2

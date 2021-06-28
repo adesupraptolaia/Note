@@ -1,0 +1,4 @@
+misalnya kita bikin game1, game2, game3
+lalu kita menemukan bahwa sebenrnya logic ketiga game ini mirip2
+ya baiknya kita bikin method-template yang mengakomodir ketiga logic game-game ini
+jadi ketiga game ini cukup implement/memanggil method-template yang barusan kita buat

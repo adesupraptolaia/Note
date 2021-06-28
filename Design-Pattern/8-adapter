@@ -1,0 +1,15 @@
+- jadi adapater pattern kita pakai jika
+- ada beberapa class yang berbeda-beda
+- tapi kita perlu melakukan suatu hal yang sama terhadap class tersebut
+- misalnya kita sama-sam perlu 'getCatalogDetails' dari tiap class
+- karena tiap class ini beda-beda, maka tentunya cara implementasinya beda-beda tiap class
+- kalo ada 5 class yang berbeda, maka untuk melakukan suatu hal yang sama, perlu ada 5 cara implementasi yang berbeda-beda sesuai dengan classnya
+
+- nah tentunya ini akan ribet jika ada nambah class-class baru lagi,,
+- oleh karena itu kita bisa menerapkan adapter pattern
+
+cara implementasinya
+
+- ide dari adapter-pattern ini adalah kita bikin interface-Adapter untuk 'melakukan suatu hal yang sama' ini
+- lalu kita taruh method 'getCatalogDetails' kedalam interface-Adapter tadi, agar bisa diterapkan utk masing2 class
+- lalu kita bikin class baru '[nama-class]Adapter' untuk ngebinding class yang berbeda-beda tadi kepada interface-Adapter

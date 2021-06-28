@@ -1,0 +1,21 @@
+- Object Pool ini jarang diimplementasikan secara manual
+- karena jika secara manual maka ini rada ribet
+- biasanya kita menggunakan design ini menggunakan framework yang telah ada
+
+- contoh kasusnya adalah connection ke database
+- kita bisa gak hanya menggunakan sigleton pattern untuk penerapan connection ke database
+- bayangin applikasi kita yang lumyan sudah besar hanya menggunakan 1 connectino
+- akibatnya tiap ada kebutuhan dengan connection ke database
+- maka ada kemungkinan antri antara tiap object untuk mengakses 1 connection yang sama
+
+- nah object pool ini adalah solusinya
+- object pool ini adalah wadah/tempat dimana kita meletak beberapa object dengan data yang sama
+- lalu kita set max-nya berapa dan min-nya berapa
+
+- nah, kita bisa bikin beberapa connection ke database, lalu kita simpan ke object pool ini
+- jadi tiap ada yang butuh connection ke database, maka dia akan ngambil connection dari object pool
+- lalu jika dia telah selesai, maka dia akan ngembalikan connection tadi ke object pool lagi
+- ibaratnya minjam connection ke object pool
+
+- bisanya object pool ini dipake jika
+- ada object2 yang costnya lumayan mahal, tapi kita gak bisa hanya pakai 1 saja

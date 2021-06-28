@@ -1,0 +1,29 @@
+Builder Pattern
+- memisahkan cara 'create new object' dari class object nya
+- biasanya dibuat jika class tsb complex
+- property nya banyak
+- ada kemungkinan gak semua instance-class memerlukan/menggunkan property tsb
+- ada kemungkinan property nya bertambah kedepannya 
+
+- cara implementasinya...
+- create class object utama ==> misal Customer
+- lalu create class object builder nya dengan nama ==> CustomerBuilder ==> saran pake builder belakangnya
+- salin semua property di class utama ==> bisa isi default value nya juga
+- buat setter dari semua property ===> jangan lupa tambahin "return 'this'" ==> agar bisa
+"CustomerBuilder
+.setName(name)
+.setAge(age)
+.setGender(gender)
+.Build()
+
+- terakhir bikin method 'build' yang nge return 'create new object' Customer dengan property2 yang didapat dari setter2 tadi.
+
+- jadi jika nantinya ada nambah property baru, misalnya phoneNumber
+- di class Customer tambahin property phoneNumber seperti pada umumnya
+- di class CustomerBuilder tambahin property phoneNumber (beserta default valuenya), lalu bikin setter seperti diatas
+- dan atur juga dibagian method build nya
+
+
+INSERT INTO kraken.transaction_billers (id, created_at, updated_at, transaction_id, biller_id, status, remote_product_id, remote_transaction_id, price, amount, response_code, message, data, reference_no, response_time, transaction_rescode, error_code, text_data1, text_data2, text_data3, text_data4, number_data1, number_data2)
+VALUES (103624883, '2020-05-07 21:38:03', '2020-05-07 21:38:07', 103654864, 85, 'success', '50151', '507213833737', 33772, 32834, '00', 'Transaction successful', 'data', '507213831864', 4284, '00', '00', '', '', '', '', 0, 0);
+

@@ -1,0 +1,7 @@
+misalnya kita punya interface Binatang
+lalu kita buat class Kucing, Anjing, Koi, dan Lele yang ngeimplement interface Binatang
+
+nah, ternyata sebenrnya kita bisa mengelompokkannya menjadi Binatang air dan Binatang darat
+oleh karena itu kita bikin interface BintangAir dan Binatang darat, yang dua-duanya mengimplement interface Binatang
+kemudian, Kucing dan Anjing harusnya mengimplement BinatangDarat
+Koi dan Lele harusnya mengimplement BinatangAir

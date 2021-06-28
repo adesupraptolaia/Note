@@ -1,0 +1,5 @@
+- intinya facade design pattern digunakan ketika kita menemukan suatu kompleksitas berulang
+- agar tidak selalu mengulang-ngulanginya dibanyak tempat
+- maka kita bikin 1 class untuk menampung kompleksitasnya tsb
+
+- kalo saya sih mengartikan seperti bikin function helper sih

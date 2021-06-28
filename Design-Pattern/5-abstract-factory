@@ -1,0 +1,22 @@
+- hampir mirip dengan factory method
+
+- hanya saja tidak bikin method... tapi bikin interface
+
+contoh penerapan
+
+- awalnya ===>
+- class Game ===> Constroctor(ArenaInterface, LevelInterface, EnemyInterface)
+- karena ada kita mau bikin standart, misal
+- jika gamenya easy ==> ArenaEasy, LevelEasy, EnemyEasy ===> dan begitu juga untuk medium dan hard
+- cara create new Instance
+- gameEasy = new Game (ArenaEasy, LevelEasy, EnemyEasy) ====> ini takutnya salah input, maka game jadi tidak baik
+==> makanya bikin standart aja unutk tiap jenis level gamenya
+
+
+- setelah penerapan ====>
+- class Game ===> Constroctor( GameFactoryInterface )
+- ada 3 class implementatsi GameFactoryInterface ===> GameEasy, GameMedium, GameHard
+- GameFactoryInterface ===> punya ArenaInterface, LevelInterface, EnemyInterface
+- GameEasy : GameFactoryInterface ===> return ArenaEasy, LevelEasy, EnemyEasy ===> dan seterusnya
+
+- ketika create new-Instance ===> gameEasy = new Game(GameEasy)

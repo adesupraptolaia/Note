@@ -1,0 +1,14 @@
+1. Sigleton
+- diterapkan ketika suatu object menyebabkan cost yang tinggi.
+- sample case :
+- ketika kita bikin object connectin ke database
+- object connectin ini selalu kita 'create new' setiap kali object lain yang memerlukan database
+- misalnya service order mau save, maka create new connection, 
+- service payment mau save, maka create new connection
+- service payment mau update, maka create new connection, dan seterusnya
+- karena connection ke database selalu di create new, padahal tentunya connection ke database ini mahal
+--------- solusi
+- kita bikin 1 object baru lagi, yang object baru ini yang menggantikan 'create new connection' di object2 lain yang butuh interaksi ke database
+- object baru ini akan :
+- jika connection nya belum pernah dibikin (=== null) maka akan ngecreate new connection
+- sedangkan jika sudah pernah dibikin, maka akan ngembalikan connection yang sama yang sebelumnya sudah pernah dibikin
