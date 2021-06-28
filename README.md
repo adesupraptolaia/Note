@@ -8,4 +8,4 @@ Rasulullah shallallaahu ‘alaihi wa sallam bersabda,
 “Ikatlah ilmu dengan dengan menulisnya”
 
 
-Sumber https://muslim.or.id/27761-catatlah-ilmu-ketika-di-majelis-ilmu.html
+Sumber [muslim.or.id](https://muslim.or.id/27761-catatlah-ilmu-ketika-di-majelis-ilmu.html)
