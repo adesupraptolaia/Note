@@ -1,0 +1,63 @@
+## SKEMA COLLECTION FLEXIBLE
+- Saat memodelkan data menggunakan mongodb
+- kita harus mengacu ke penggunaan aplikasi dalam melakukan query, update dan memproses data
+- misalnya ada table user, contact, dan access
+- ternyata table contact dan access gak bisa diakses langsung, melainkan harus tau usename nya dulu
+- maka ini perlu mongodb
+- misalnya lagi ternyata jika kita get data user, datanya gak berarti apa2
+- kita memang hanya butuh data contact maupun data access
+
+- tidak perlu definisikan struktur data ketika create collection
+- karena tiap documen dalam collection yang sama bisa beda2 strukturnya
+- tapi tetap direkomendasikan agar struktur documen dalam satu collection tidak berbeda-beda
+
+## PRIMARY KEY
+- hanya ada 1 primary key di mongodb, yaitu '_id'
+
+## STRUKTUR DOKUMENT EMBED
+{
+    _id: <object_id>,
+    username: "123xyz",
+    contact: {
+        phone: "085211112222",
+        email: "email@email.com"
+    },
+    access: {
+        level: 5,
+        group: "dev
+    }
+}
+
+
+## STRUKTUR DOKUMENT REFERENCE
+user documen
+{
+    _id: <object_id>,
+    username: "123xyz"
+}
+
+contact documen
+{
+    _id: <object_id>,
+    user_id: "123xyz"
+    phone: "085211112222",
+    email: "email@email.com"
+}
+
+access documen
+{
+    _id: <object_id>,
+    user_id: "123xyz"
+    level: 5,
+    group: "dev
+}
+
+### Gunakan Embedded jika :
+- Antar document saling ketergantungan
+- Tidak bisa langsung melakukan perubahan ke embedded document
+- Embedded document selalu dibutuhkan ketika mengambil data document
+
+### Gunakan Reference jika :
+- Antar document bisa berdiri sendiri dan tidak terlalu ketergantungan satu sama lain
+- Bisa melakukan manipulasi data langsung terhadap reference document
+- Reference document tidak selalu dibutuhkan saat mengambil document

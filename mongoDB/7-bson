@@ -1,0 +1,4 @@
+- Jadi mongodb menggunakan struktur data bson
+- kamu bisa googling bagaimana struktur data dan type2 data di bson
+- tapi umumnya mirip javascript
+- di mongodb kamu bisa melakukan query date mirip seperti query2 di javascript

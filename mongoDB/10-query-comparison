@@ -1,0 +1,88 @@
+$eq
+- Membandingkan value dengan value lain
+$gt
+- Membandingkan value lebih besar dari value lain
+$gte
+- Membandingkan value lebih besar atau sama dengan value lain
+$lt
+- Membandingkan value lebih kecil dari value lain
+$lte
+- Membandingkan value lebih kecil atau sama dengan value lain
+$in
+- Membandingkan value dengan value yang ada di array
+$nin
+- Membandingkan value tidak ada dalam value yang ada di array
+$ne
+- Membandingkan value tidak sama dengan value lain
+
+format
+db.<COLLECTION>.find({
+    field: {
+        $operator: "value"
+    }
+});
+
+contoh query
+
+// select * from customers where _id = 'khannedy'
+db.customers.find({
+    _id: {
+        $eq: "khannedy"
+    }
+});
+
+// select * from products where price > 1000
+db.products.find({
+    price: {
+        $gt: 1000
+    }
+});
+
+// insert product documents
+db.products.insertMany([
+    {
+        _id: 3,
+        name: "Pop Mie Rasa Bakso",
+        price: new NumberLong(2500),
+        category: "food"
+    },
+    {
+        _id: 4,
+        name: "Samsung Galaxy S9+",
+        price: new NumberLong(10000000),
+        category: "handphone"
+    },
+    {
+        _id: 5,
+        name: "Acer Precator XXI",
+        price: new NumberLong(25000000),
+        category: "laptop"
+    }
+]);
+
+// select * from products where category in ('handphone', 'laptop') and price > 5000000
+db.products.find({
+    category: {
+        $in: ["handphone", "laptop"]
+    },
+    price: {
+        $gt: 5000000
+    }
+});
+
+// select * from products where category in ('food', 'laptop') and price > 1000 and price < 10000
+db.products.find({
+    category: {
+        $in: ["food", "laptop"]
+    },
+    price: {
+        $gt: 1000,
+        $lt: 10000
+    }
+})
+
+db.products.find({
+    category: {
+        $nin: ["food"]
+    }
+})

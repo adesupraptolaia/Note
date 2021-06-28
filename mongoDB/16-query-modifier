@@ -1,0 +1,35 @@
+- Query Modifier adalah memodifikasi hasil query yang telah kita lakukan
+- Contoh yang sering kita lakukan seperti, mengubah query menjadi jumlah data, membatasi jumlah data dengan paging, dan lain-lain
+- Untuk memodifikasi hasil query, kita bisa menambahkan function query modifier setelah menggunakan function find
+
+
+count()
+- Mengambil jumlah data hasil query
+limit(size)
+- Membatasi jumlah data yang didapat dari query
+skip(size)
+- Menghiraukan data pertama hasil query sejumlah yang ditentukan
+sort(query)
+- Mengurutkan hasil data query
+
+
+contoh query
+// select count(*) from products
+db.products.find({}).count()
+
+// select * from products limit 4
+db.products.find({}).limit(4)
+
+// select * from products offset 2
+db.products.find({}).skip(2)
+
+// select * from products limit 4 offset 2
+db.products.find({}).limit(4).skip(2)
+db.products.find({}).skip(2).limit(4)
+
+// 1 untuk asc, -1 untuk desc
+// select * from products order by name asc, category desc
+db.products.find({}).sort({
+    name: 1,
+    category: -1
+})

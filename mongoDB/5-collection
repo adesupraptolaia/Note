@@ -1,0 +1,70 @@
+Collection di mongodb mirip seperti table di mySQL
+
+1. db.getCollectionNames()
+- menampilkan semua collection di database tsb
+- tampilannya array
+[ "contoh", "produk" ]
+
+2. db.createCollection("[nama_collection]")
+- membuat collection baru
+{ "ok" : 1 }
+
+3. db.getCollectionInfos()
+- mendapatkan info selmua collection
+[
+	{
+		"name" : "contoh",
+		"type" : "collection",
+		"options" : {
+			
+		},
+		"info" : {
+			"readOnly" : false,
+			"uuid" : UUID("8c72055e-2a1c-4403-9d83-f541acdf8d44")
+		},
+		"idIndex" : {
+			"v" : 2,
+			"key" : {
+				"_id" : 1
+			},
+			"name" : "_id_",
+			"ns" : "hallo.contoh"
+		}
+	},
+	{
+		"name" : "produk",
+		"type" : "collection",
+		"options" : {
+			
+		},
+		"info" : {
+			"readOnly" : false,
+			"uuid" : UUID("26871053-668f-465d-86fb-a586f985e191")
+		},
+		"idIndex" : {
+			"v" : 2,
+			"key" : {
+				"_id" : 1
+			},
+			"name" : "_id_",
+			"ns" : "hallo.produk"
+		}
+	}
+]
+
+
+4. db.[nama_collection] / db.getCollection("[nama_collection]")
+- mendapatkan object collection
+hallo.nama_collection
+
+5. db.<nama_collection>.find()
+- menampilkan semua document
+
+6. db.<nama_collection>.count()
+- menampilkan jumlah document
+
+7. db.<nama_collection>.drop()
+- menghapus collection
+
+8. db.<nama_collection>.totalSize()
+9. db.<nama_collection>.stats()

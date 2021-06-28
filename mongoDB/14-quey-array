@@ -1,0 +1,40 @@
+query untuk field yang value nya array, 
+tapi bisa juga untuk query yang non array
+
+
+$all
+- Mencocokkan array yang mengandung elemen-elemen tertentu
+$elemMatch
+- Mengambil document jika tiap element di array memenuhi kondisi tertentu
+$size
+- Mengambil document jika ukuran array sesuai 
+
+
+// select * from products where (tags = "samsung" and tags = "monitor")
+db.products.find({
+    tags: {
+        $all: ["samsung", "monitor"]
+    }
+});
+
+db.products.find({
+    category: {
+        $all: ["food"]
+    }
+});
+
+// select * from products where tags in ("samsung",  "logitect")
+db.products.find({
+    tags: {
+        $elemMatch: {
+            $in: ["samsung", "logitech"]
+        }
+    }
+});
+
+// select * from products where size(tags) = 3
+db.products.find({
+    tags: {
+        $size: 3
+    }
+});

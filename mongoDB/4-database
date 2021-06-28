@@ -1,0 +1,27 @@
+1. use [database]
+- gak perlu bikin database di mongodb
+- cukup perintah 'use' (pilih) diikuti nama database
+- maka secara otomatis akan mengakses database tsb
+- jika database belum ada, maka secara otomatis mongodb akan membuatkan dulu database tsb
+
+2. show databases / use dbs
+- perintah untuk menampilkan semua database
+- database yang muncul adalah database yang tersimpan
+- jika kita gunakan perintah use [new_database], tetapi belum ada collection yang kita buat
+- maka database ini tidak akan ditampilkan
+- karena mongodb baru akan menyimpan database tsb jika sudah ada collection didalamnya
+
+3. db.getName()
+- untuk menampilkan nama database sekarang
+
+4. db.dropDatabase()
+- untuk menghapus database
+
+5. db.hostInfo()
+- menampilkan info host
+
+6. db.version()
+- menampilkan versi database
+
+7. db.stats()
+- menampilkan statistik penggunaan database
