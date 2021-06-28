@@ -1,0 +1,29 @@
+kubectl get [node|pod]
+- untuk menampilkan semua [node|pod]
+
+kubectl get [node|pod] -o wide
+- untuk menampilkan semua [node|pod] lebih detail
+
+kubectl get [node|pod] --show-labels
+- untuk menampilkan semua [node|pod] beserta label
+
+kubectl describe [node|pod] [nama-service]
+- untuk mendapatkan deskrpsi
+
+kubectl create -f [file]
+- untuk create service dari file config
+
+kubectl label pod redis-pod key=value
+- menambahkan label ke pod
+
+==== untuk search by label
+kubectl get [service] -l key
+kubectl get [service] -l key=value
+kubectl get [service] -l ‘!key’
+kubectl get [service] -l key!=value
+kubectl get [service] -l ‘key in (value1,value2)’
+kubectl get [service] -l ‘key notin (value1,value2)’
+
+==== untuk search by beberapa label
+kubectl get [service] key,key2=value
+kubectl get [service] key=value,key2=value

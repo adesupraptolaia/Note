@@ -1,0 +1,23 @@
+====== node
+- node adalah worker machine di kubernetes
+- node bentuknya bisa seperti VM
+- didalam node selalu ada kubelet, kube-proxy, dan container manager
+
+====== pod
+- pod adalah unit terkecil yang bisa dideploy di kubernetes cluster
+- pod bisa berisi 1 atau lebih container
+- intinya pod adalah tempat dimana applikasi kita running
+- kenapa pod bukan container? karena container manager tidak hanya docker
+- jadi ibaratnya pod ini seperti interface container, sehingga container-docker sendiri harus dibungkus/dibinding dulu oleh pod
+
+
+========= label
+- Untuk memberi tanda pada Pod, Replica Controller, Replica Set, Service, dll
+- Untuk mengorganisir
+- bisa dipakai untuk search/query
+- Memberi informasi tambahan pada Pod
+
+======== Annotation
+- Annotation untuk nambahin descripsi sebuah service
+- Annotation gak bisa dipakai untuk search/query
+- Annotation bisa menampung informasi sampai 256kb

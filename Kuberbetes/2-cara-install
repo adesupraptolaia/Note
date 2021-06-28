@@ -1,0 +1,11 @@
+- punya docker sebagai container manager
+
+Windows
+- bagi yang pakai windows, bisa pakai docker desktop untuk kubernetesnya
+- buka docker desktop, lalu pergi ke pengaturan/preference, klik tab, kubernetes, klik apply & save
+
+MacOS/Linux
+- install minikube ===> https://minikube.sigs.k8s.io/docs/start/ ===> sebagai kubernetes di local
+- install virtual-box ====> https://www.virtualbox.org/wiki/Downloads ====> tools yang dibuuthkan minikube
+- install kubectl sebagai kubernetes-api-server ===> untuk komunikasi dengan node kubernetes
+

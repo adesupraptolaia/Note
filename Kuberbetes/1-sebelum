@@ -1,0 +1,32 @@
+============ Pengenalan dan Arsitektur ============
+kubernetes adalah applikasi untuk automation : deployment, scalling, dll
+
+- ketika running kubernetes, kita merunning kube cluster
+- didalam kube cluster ada 2 komponen, yaitu kube master dan kube node/worker
+- kube node/worker adalah tempat applikasi kita running
+- kube master lebih ke management 
+
+didalah kube node/worker ada 3 sistem
+- kubelet
+- kubeproxy
+- container manager (seperti docker)
+
+didalam kube master terdapat:
+1. kube-apiserver adalah api untuk interaksi dengan kube cluster
+2. etcd adalah dabasenya kube
+3. kube-scheduler adalah yang mengatur kapan dan dimana applikasi harus di running
+4. kube-controller-manager adalah mengatur keseluruhan kube cluster, terutama bagian kube node/worker
+5. cloud-controller-manager sama dengan kube-controller-manager tapi lebih ke cluster di cloud
+
+Kube nodes terdiri dari:
+1. kubelet, 1 node punya 1 kubelet, tugasnya untuk memastikan applikasi bisa running di nodes
+2. kube-proxy, 1 node punya 1 kube-proxy
+- bertugas sebagai proxy terhadap trafik (arus request response) melalui network yang masuk ke applikasi kita
+- dia juga sebagai load balancer
+3. container-manager, 1 node punya 1 container-manager
+
+
+============ Nodes ============
+- nodes adalah worker machine di kubernetes
+- node bisanya berbentuk VM 
+- didalah node ada kubelet, kube-proxy, dan container-manager
