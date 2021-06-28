@@ -1,0 +1,24 @@
+DockerFile ====> untuk buat images
+DockerCompose ====> sudah sampai tingkatan bikin dan jalanin container
+- DockerCompose untuk meng-automasi proses2 seperti bikin container, jalanin, set port, bikin env, bikin network, dll
+
+
+docker build --tag [nama_image]:[tag] --file [nama_docker_file] .
+- cara eksekusi dockerfile
+- setelah perintah ini, yang akan dibuatkan oleh docker adalah images
+- images ini lalu bisa kita gunakan untuk membuat container
+
+docker tag [local_images]:[tag] [username]/[repo_docker_hub]:[tag]
+- karena nama image kita dilocal gak mungkin [username]/[repo_docker_hub]:[tag]
+- maka kita tagging images local kita dengan nama images [username]/[repo_docker_hub]:[tag]
+- ya agar bisa di push di docker registry pakai
+
+docker push [username]/[repo_docker_hub]:[tag]
+- push docker ke docker registry
+
+docker login
+- untuk login docker hub pak
+
+docker pull [username]/[repo_docker_hub]:[tag]
+- untuk download images dari registry di docker_hub kita
+

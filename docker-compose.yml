@@ -1,0 +1,64 @@
+# versi docker compose yang digunakan
+version: "3.7"
+
+# servis/container apa saja yang bakal ada
+services:
+    # bikin definisi
+    mongo-service:
+        # nama container natinya
+        container_name: mongo-container
+        # image yang dipakai untuk container tsb
+        image: mongo:4.2
+        # port yang di ekspos
+        ports:
+            # [port_local/port_luar_docker] : [port_dalam_docker]
+            - 27016:27017
+        # network yang dipakai
+        networks:
+            - app-network
+        volumes:
+            - mongo_volume:/data/db
+    
+    # bikin definisi
+    golang-http:
+        # nama container natinya
+        container_name: golang-container
+        # selain pakai image, bisa juga pakai image yang didapat dari DockerFile
+        build:
+            # docker build .
+            context: .
+            # pake dockerfile yang mana, misalnya kalo namanya gak dockerfile doang
+            dockerfile: coba.DockerFile
+        # port yang di ekspos
+        ports:
+            # [port_local/port_luar_docker] : [port_dalam_docker]
+            - 8080:9000
+        # dijalanin setelah service mana?
+        depends_on:
+            - mongo-service
+        # env yang dibutuhkan oleh container ini
+        environment:
+            - NAME="ADE LAIA"
+            - AGE=27
+            - MONGO_HOST=mongo-container
+        # network yang dipakai
+        networks:
+            - app-network
+
+# bikin docker networks
+networks:
+    # define network, bisa aja define lebih dari 1 network
+    app-network:
+        # nanti bisa dicek di "docker network ls"
+        name: name-app-nework
+
+# bikin docker volumes
+volumes:
+    # define service volume, biasa aja lebih dari 1 volume
+    mongo_volume:
+        # nama volume untuk service 'mongo_volume'
+        name: mongo_volume
+
+
+
+

@@ -1,0 +1,53 @@
+refensi langsung
+https://docs.docker.com/reference/
+
+Docker UI ===> docker desktop
+
+Ketika kita mendeploy applikasi di VM (Virtual Machine) maka kita perlu menginstall semua yang berkaitan dengan applikasi kita
+- kita butuh install database
+- kita butuh install library 
+- kita butuh install web server
+- kita butuh install run time app (seperti java virtual machine)
+- applikasinya itu sendiri
+
+
+nah, didocker kita cukup menggunakan images
+
+- docker adalah container manager
+- docker menggunakan sistem operasi induk
+- docker akan diisolate oleh container manager
+
+- docker client ===> tempat dimana kita cli-an
+- docker server/host/daemon ===> tempat dimana si container manager mengatur images, container, dan hubungan ke registry
+
+========= docker registry =========
+- ibaratnya githubnya docker-images yang kita buat
+
+========= docker images =========
+- hasil bundle/distribution-file/package applikasi kita oleh docker
+- images inilah yang kemudian kita simpan ke registry
+- images ini btw udah langsung siap jalan, tidak perlu pakai install2 segala
+- cukup run images tsb di dalam container maka applikasi yang terbundle dalam images tadi akan langsung running
+
+==== docker container =========
+- adalah hasil instance dari images
+- 1 images bisa berjalan di banyak container
+- misal 1 images mysql bisa berjalan dibanyak container 
+- container statusnya bisa running ataupun tidak
+
+
+======== docker network =========
+- karena tiap container yang kita buat itu terisolate oleh container manager
+- maka agar mereka bisa berhubungan, maka perlu dibuat docker network
+- ketika kita menghubungkan antara container app-golang dengan container mongo
+- maka perhatikan bahwa mongo_host adalah nama container dari mongo
+
+======== docker volume =========
+- kalo kita pakai db di docker
+- ketika kita hapus container db tsb
+- maka data yang tersimpan di container tsb akan terhapus
+- oleh karena itu, agar datanya tetap ada meskipun containernya sudah dihapus
+- maka kita pakai docker volume
+- docker volume harus di create dulu, kemudian di mounting terhadap direktory penyimpanan data db di docker
+- biasanya tiap image akan berbeda-beda tempat penyimpanan data db nya, maka kita perlu cek langusung ke docker hub
+- cari bagian Where to store atau semacamnya

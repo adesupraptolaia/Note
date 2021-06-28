@@ -1,0 +1,88 @@
+========== show images / show container ========
+docker images
+- untuk menampilkan list images di computer
+
+docker pull [nama_regostry]:[tag]
+- untuk mendownload image registry
+
+docker container ls
+- untuk menampilkan semua container yang running
+
+docker container ls -all / -a
+- untuk menampilkan semua container, baik running ataupun tidak
+
+docker logs [name_container]
+- untuk menampilkan login
+
+docker inspect [name_container]
+- untuk menampilkan settingan container
+
+
+========= docker container ==========
+
+docker container create --name=[nama_container] [images]:[tag]
+- ini hanya create container, belum running
+- btw kita bisa create container lagi dengan images yang sama, asalkan namanya beda
+
+docker container start [nama_container]
+- untuk start container
+
+docker container stop [nama_container]
+- untuk stop container
+
+docker container rm [nama_container]
+- untuk delete container
+- bisa hapus langsung beberapa container
+- langsung tulis aja nama_container lain (yang mau di delete) secara berurutan dipisahkan spasi
+
+docker container create --name=[nama_container] -p [port_localhost]:[port_docker] [images]:[tag]
+- buka port container ===> [port_dipakai_dilocalhost] : [port_docker_container]
+
+docker container create -e [NAME_ENV]=[VALUE_ENV] -e [NAME_ENV]=[VALUE_ENV] [images]:[tag]
+- option -e untuk masukkan environment variable
+- kalo utk golang-macOS gunakan command ===> export [NAME_ENV]=[VALUE_ENV]
+
+docker exec -it [nama_container] [perintah-cli atau /bin/bash]
+- perintah exec agar bisa masuk kedalam container
+- -i dan -i adalah command agar interactive
+- /bin/bash untuk masuk begitu aja
+
+
+==========  docker images ============
+
+docker image rm [images]:[tag]
+- hapus images
+- btw docker gak bisa hapus images yang images nya lagi dipakai container, baik container running/tidak
+
+========== docker network ==========
+docker network create [nama_network]
+- create network
+
+docker network ls
+- menampilkan semua network
+
+docker network connect [nama_network] [nama_container]
+- memasukkan container ke dalam network 
+
+docker network disconnect [nama_network] [nama_container]
+- mengeluarkan container dari network
+
+docker network rm [nama_network]
+- delete network
+
+
+========== docker network ==========
+docker volume create [nama_volume_local]
+- untuk membuat baru volume
+
+docker volume ls
+- untuk menampilkan semua volume yang ada
+
+docker volume rm [nama_volume_local]
+- untuk menghapus volume
+
+docker volume inspect [nama_volume_local]
+- untuk menampilkan spek volume
+
+docker create -v [nama_volume_local]:[storage_di_docker] [images]:[tag]
+- nambahin volume di container
