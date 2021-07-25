@@ -1,0 +1,66 @@
+- help
+=== untuk menampilkan help
+
+- \?
+=== menampilkan lebih banyak help
+=== untuk keluar tekan q
+
+- \l
+=== menampilkan seluruh Database
+
+- \c [database]
+=== connect ke database
+
+- \d 
+=== show all tables
+
+- \d [table]
+=== show description of table
+
+========================= SAMA =========================
+
+===== create database seperti biasa
+===== drop database seperti biasa
+===== create table seperti biasa, hanya saja ada beberapa perbedaan di tipe data
+===== SELECT seperti biasa.
+===== WHERE clause masih sama
+===== LIMIT [count] OFFSET [count] ==== masih sama
+
+========================= SAMA =========================
+
+====== ALIAS COLOUM
+- SELECT name AS NAMA FROM person; ------- SELECT name NAMA FROM person; ====> sama, bisa pakai salah satu
+- SELECT first_name || ' ' || last_name AS full_name FROM person; ===> kalo mau gabungin
+- SELECT name AS "NAMA LENGKAP" FROM person; =====> jika mau pakai spasi di alias
+
+
+
+====== ORDER BY
+- cara pakai seperti biasa
+contoh yang rada beda ====> SELECT first_name, LENGTH(first_name) AS len FROM person ORDER BY len, first_name;
+- option ====> ASC | DESC | NULLS LAST, NULLS FIRST
+
+
+====== SELECT DISTINCT
+----- akan ada 2 yang dievaluasi untuk DISTINCT, yaitu 
+SELECT
+   DISTINCT column1, column2
+FROM
+   table_name;
+
+------ khusus kolom 1 yang di sidak
+SELECT
+   DISTINCT ON (column1) column1,
+   column2
+FROM
+   table_name;
+
+
+======== Penggunakan FIRST (mirip limit) === harus setelah OFFSET [num] ROWS
+- SELECT * FROM person FETCH FIRST 5 ROWS ONLY;
+- SELECT * FROM person
+OFFSET 3 ROWS
+FETCH FIRST 5 ROWS ONLY;
+
+
+==== PENGUNAAN LIKE, ILIKE, NOT LIKE, NOT ILIKE

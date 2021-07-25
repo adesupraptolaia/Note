@@ -1,0 +1,28 @@
+============== Install
+- install melalui web resmi postgres
+- pilih OS laptopmu
+- masukkan password untuk user 'postgres'
+- install pgAdmin ===> GUI postgres bawaaan
+- install psql shell ===> untuk shell nya postgres
+
+============== Akses postgres
+- buka psql shell
+- masukkan :
+-- Server [localhost]: 
+-- Database [postgres]: 
+-- Port [5432]: 
+-- Username [postgres]:
+-- password
+- jika tidak diisi maka akan pakai nilai default yang ada di dalam '[]'
+
+=============== akses tanpa psql shell
+- export PATH=$PATH:/Library/PostgreSQL/13/bin
+- untuk akses bisa dengan cara
+- psql -h [host] -p [port] -U [username] [database]
+- jika tidak diisi maka otomatis akan ke username di laptopmu
+- psql -U postgres [database]
+
+
+=============== dokumentatasi
+- datatype yang ada : https://www.postgresql.org/docs/13/datatype.html
+

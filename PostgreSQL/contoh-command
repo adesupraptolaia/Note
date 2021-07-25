@@ -1,0 +1,30 @@
+=== create tabel tanpa constrains
+CREATE TABLE person (
+    id INT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    gender VARCHAR(7),
+    data_of_birth DATE
+);
+
+==== create table dengan constrains
+CREATE TABLE person (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    gender VARCHAR(7) NOT NULL,
+    date_of_birth DATE NOT NULL,
+    email VARCHAR(150) 
+);
+
+
+==== insert into
+INSERT INTO person (first_name, last_name, gender, date_of_birth, email)
+VALUES
+    ('Ayyub', 'Laia', 'MALE', date '2019-03-09', NULL),
+    ('Annisa', 'Laia', 'FEMALE', date '2008-01-04', 'annisa@gmail.com');
+
+INSERT INTO person (first_name, last_name, gender, date_of_birth, email)
+VALUES (
+    'Ayyub', 'Laia', 'MALE', date '2019-03-09', NULL
+);
