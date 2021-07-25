@@ -1,0 +1,23 @@
+- Java dibuat oleh James Gosling dan team saat bekerja di Sun Microsystem
+- Sun Microsystem sekarang sudah dibeli oleh Oracle
+- Java merupakan open source dan dirilis pada 1995
+- Java terkenal sebagai bahasa berorientasi object dan mendukung pengelolaan memori secara otomatis
+- Karena dulunya pada bahasa C++, untuk melakukan pengelolaan memori harus dilakukan secara manual
+- Java terkenal dengan write once dan run anywhere
+- Karena binary file java tidak dijalankan oleh sistem operasi
+- Binary file java dijalankan oleh Java Virtual Machine (JVM)
+- Jadi OS cukup menginstall JVM untuk bisa menjalankan program java
+
+- Ada beberapa teknologi di Java
+1. Java Standard Edition
+2. Java Enterprise Edition
+3. Java Micro Edition
+
+Tools Yang dibutuhkan
+- JRE : Java Runtime Environment ===> applikasi untuk menjalankan applikasi java ===> biasanya cukup di server saja
+- JDK : Java Development Kit ===> applikasi untuk develop java ===> sudah include JRE
+- JVM : Java Virtual Machine ===> yang mengeksekusi Binary File Java
+- Karena JVM hanya eksekusi binary file, akhirnya ada beberapa bahasa pemograman baru yang dibuat agar bisa bisa di running di JVM, seperti Kotlin, Scala, Groovy, dll
+- Jadi sebenernya kotlin itu juga adalah bahasa pemograman yang ujung2 nya akan membuat binary file yang bisa dieksekusi oleh JVM
+
+
