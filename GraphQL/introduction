@@ -1,0 +1,100 @@
+- jadi awalnya graphql ini dikembangkan facebook
+- masalah yang dihadapi facebook ketika itu adalah
+- mereka kesulitan untuk mengambil data komentar yang tiap komentar itu ada komentar lagi didalamnya
+- karena tiap komentar ada komentar lagi didalamnya, akibatnya harus bolak balik minta data ke server, jadinya peformanya gak optimal
+
+-- salah satu sumber belajar di howtographql.com
+
+Keuntungan graphql
+1. consumer bisa minta data sesuai kebutuhannya, jadi data yang tidak butuh tidak perlu dikirim
+-- berbeda dengan restAPI yang mengembalikan data-data seluruhnya, kadang2 data tsb tidak semua dibutuhkan oleh consumer
+2. tentu saja data yang di transfer lewat network akan lebih hemat, karena sesuai kebutuhannya saja, ini sangant berpengaruh ke pengguna mobile yang memiliki koneksi terbatas
+3. kalo ada front-end beda-beda maka akan repot nyediain banyak endpoint sesuai kebutuhan tiap front-end itu.
+-- misal frontend-web minta data A,B,C untuk halaman utama, sedangkan frontend-mobile minta data A,B,D untuk halaman utama
+-- itu dari halaman utama saja, kalo misalnya ada banyak halaman, maka akan banyak endpoint-BE yang perlu dibuat untuk memenuhi kebutuhan frontend
+
+
+Arsitektur penggunaan GraphQL
+1. GraphQL langsung berkomuniskasi dengan database ===> ini yang paling gampang
+2. GraphQL jadi 'pintu utama' antara client dan seluruh service yang ada
+3. GraphQL diterapkan di 1 service, lalu service ini yang akan call service2 lain yang dibutuhkan
+
+
+CORE CONCEPT
+- syntak penulisan schema GraphQL menggunakan SDL (Schema Definition Language) source (prisma.io/blog/graphql-sdl-schema-definition-language-6755bcb9ce51)
+- tanda seru "!" artinya required
+- [] ===> artinya array
+
+contoh penulisan schema
+type Person {
+  name: String!
+  age: Int!
+  posts: [Post!]!
+}
+
+type Post {
+  title: String!
+  author: Person!
+}
+
+Contoh Query
+{
+  allPersons {
+    name
+  }
+}
+{
+  allPersons(last: 2) {
+    name
+  }
+}
+
+contoh mutation (create, update, delete)
+mutation {
+  createPerson(name: "Bob", age: 36) {
+    id
+  }
+}
+
+
+==== Subscription
+subscription {
+  newPerson {
+    name
+    age
+  }
+}
+
+
+CONTOH PENULISAN Schema
+====== basic
+type Query { ... }
+type Mutation { ... }
+type Subscription { ... }
+
+type Query {
+  allPersons(last: Int): [Person!]!
+  allPosts(last: Int): [Post!]!
+}
+
+type Mutation {
+  createPerson(name: String!, age: Int!): Person!
+  updatePerson(id: ID!, name: String!, age: String!): Person!
+  deletePerson(id: ID!): Person!
+}
+
+type Subscription {
+  newPerson: Person!
+}
+
+type Person {
+  id: ID!
+  name: String!
+  age: Int!
+  posts: [Post!]!
+}
+
+type Post {
+  title: String!
+  author: Person!
+}
