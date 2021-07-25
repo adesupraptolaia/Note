@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Vue</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Hello VueJS</h1>
+        <h1>Nama : {{ nama }}</h1>
+        <h1>Umur : {{ umur }}</h1>
+        <h1>Method getName : {{ getName("Kaka") }}</h1>
+
+        <h1>Compute kaliSepuluh {{ kaliSepuluh }} </h1>
+        <h1>Method umurKaliSepuluh() {{ umurKaliSepuluh(umur) }} </h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        // cara create new object vue
+        const vm = new Vue({
+            el: '#app', // element dimana object vue diterapkan
+            data: { // inisiasi data yang digunakana
+                nama: 'Ade',
+                umur: 27
+            },
+            methods: { // membuat method2 yang ada
+                getName: (nama) => {
+                    return `Hello ${nama}` 
+                },
+                umurKaliSepuluh: (umur) => {
+                    return umur * 10
+                }
+            },
+            computed: { // method2 yang menggunakan langsung nilai2 di 'data', jangan pake arrow function pak, karena gak bisa pake this
+                kaliSepuluh: function() {
+                    return this.umur * 10
+                }
+            }
+        })
+        console.log(vm)
+    </script>
+</body>
+</html>
