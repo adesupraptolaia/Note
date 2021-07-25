@@ -2,7 +2,45 @@
 - Design pattern gak bisa diterapkan begitu saja di kode pemogramanan, tapi
 - Ibaratnya seperti template atau panduan untuk menyelesaikan masalah yang terjadi
 
+- pattern berbeda dengan algoritma, algoritma adalah sekumpulan step yang jelas untuk mencapai tujuan tertentu
+- sedangkan pattern lebih kepada high-level solution,
+- 2 permasalahan berbeda jika menggunakan 1 pattern yang sama, bisa saja akan berbeda penerapannya
+
 
 keuntungan
 - desain software jadi lebih baik
 - software lebih mudah di maintain, seperti lebih mudah dalam menambahkan feature dll
+
+Klasifikasi pattern
+- Creational patterns ====> mekanisme pembuatan object yang bisa meningkatkan fleksiblitas dan reuse 
+- Structural patterns ====> cara merangkul object2 dan kelas2 dalam struktur yang besar, tapi tetap menjaga struktur tetap fleksible dan efesien
+- Behaviour Pattern ===> menjaga keefektifan komunikasi dan penugasan antar objek
+
+
+Creational Pattern
+1. Factory Method
+2. Abstract Method
+3. Builder
+4. Prototype
+5. Singleton
+
+Structural patterns
+1. Adapter
+2. Bridge
+3. Composite
+4. Decorator
+5. Facade
+6. Flyweight
+7. Proxy
+
+Behaviour Pattern
+1. Chain of Responsibility
+2. Command
+3. Iterator
+4. Mediator
+5. Memento
+6. Observer
+7. State
+8. Strategy
+9. Template Method
+10. Visitor

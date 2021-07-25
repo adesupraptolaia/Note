@@ -1,0 +1,13 @@
+- idenya adalah untuk mengurangi kechaosan karena tiap object saling berkomunikasi
+- jadi akhirnya pattern ini akan memaksa tiap object saling berkomunikasi lewat sebuah Mediator
+
+- contoh realnya adalah
+1. app ojek online jadi mediator untuk para driver dan para customer
+-- jadi customer yang ingin cari driver gak langsung menghubungi driver, melainkan akan dicarikan/dihubungkan oleh app ojek online
+2. tower utama bandara jadi mediator untuk para pilot
+-- jadi pilot-pilot yang ingin take-off maupun landing cukup menghubungi tower utama bandara untuk ketersediaan lapangan pacu tersebut
+
+cara implementasinya
+- sejauh yang dibaca :
+- buat interface Mediator yang isinya adalah method2 yang digunakan untuk komunikasi antar Componen
+- lalu tiap componen juga berisi variable Mediator yang interface tadi, tujuannya untuk registrasi begitu
