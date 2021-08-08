@@ -1,0 +1,31 @@
+masalah jika tidak menerapkan API gateway
+- semua service bisa diakses langsung dari luar
+- kalo menerapkan autentikasi maka harus ditiap service
+- rawan kebocoran data
+
+API gateway adalah
+- applikasi yang bertugas sebagai gerbang dari luar (internet) ke dalam (Microservices)
+- api gateway mirip seperti proxy server ke semua applikasi Microservices
+--- jadi semua trafik akan melewati api gateway dulu
+- semua trafik tidak boleh mengakses service kita sebelum melewati 
+
+Keuntungan
+- lebih aman, karena setiap trafik baru boleh lewat setelah validasi dari api gateway
+- tiap Microservices tidak perlu handle auth, karena api gateway yang urus
+--- jika ada masalah security, harusnya hanya API gateway yang diperbaiki
+- api gateway bisa jadi load balancer, dia bisa membagi2 trafik di Microservices tsb
+--- biasanya 1 Microservices tidak cuma ada 1 pod, minimal harus ada 2 pod
+--- agar jika 1 mati, maka masih ada Microservices yang bisa nerima trafik
+- bisa menerapkan rate limiter di api gateway
+--- misalnya 1 user hanya boleh hit 1 req/detik, jika lebih maka akan ditolak
+- jika terjadi error di Microservices, tidak akan terekspos ke Microservices
+--- misalnya di Microservices itu ada dapat http code 500 dan nampilin error sql atau lainnya
+--- maka api gateway jika menemukan ini akan ngembalikan halaman khusus 500 saja tanpa error tadi
+
+
+Contoh API gateway
+- Nginx ---> ini paling populer
+- Apache HTTPD
+- Kong ----> ini Nginx versi khusus API Gateway
+- Netflix Zuul ----> biasanya bagus untuk Java
+- Spring Cloud Gateway

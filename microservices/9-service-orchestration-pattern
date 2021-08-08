@@ -1,0 +1,17 @@
+- Salah satu cara komunikasi Aggregation service
+- komunikasinya lebih ke sync
+- direct call ke service-service yang dituju
+- biasanya komunikasi lewat RPI/RPC (Remote Procedural Invocation/Call)
+
+
+Keuntungan
+- Lebih mudah dibuat, karena semua business logic ada di 1 Aggregation service
+- lebih mudah dimengerti oleh orang baru, cukup baca codingan di Aggregation service maka sudah tau keseluruhan flow
+
+Kekurangan
+- Aggregation service akan bergantung banget dengan servie lain
+-- jadi kalo ada service lain mati, maka Aggregation service tidak akan jalan
+- Akan lambat, karena harus nunggu semua service selesai
+- lebih mudah error, karena kalo yang lain error, maka dia juga ikutan error
+- kalo ada tambahan Microservices baru, maka Aggregation service akan berubah
+

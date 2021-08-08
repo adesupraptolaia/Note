@@ -1,0 +1,27 @@
+- tentunya ada banyak jenis Frontend, seperti Web, Mobile, Server
+- akibatnya kebutuhan tiap FrontEnd ini akan beda-beda
+--- sebagai contoh, Tampilan di HP tentunya lebih minimalis dibandingkan tampilan di Web
+- penyimpanan dan kemampuan HP tentu tidak lebih baik dari web/laptop
+- kecepatan internet device tentu berbeda-beda
+- kan gak mungkin kalo kita kasih data besar ke HP, ini bisa berakibat app kita jadi lemot
+- lalu cara authentication tiap platform akan berbeda-beda
+- kemudian, masalahnya lagi adalah kita hanya punya 1 API Gateway
+--- sedangkan kebutuhan frontend hanya dihandle oleh 1 API Gateway
+
+- salah satu solusi dari masalah ini adalah menerapkan Backend for FrontEnd
+- jadi tiap platform FE akan di provide BE nya
+
+Keuntungan Backend for FrontEnd
+- development Banckend untuk tiap platform FrontEnd akan fokus di timnya masing-masing
+- logic di frontend gak tercampur-campur
+
+
+Alternatif lain daripada menerapkan Backend for FrontEnd
+- pake graphQL
+- keuntungannya, karena dengan graphQL, FE akan bebas memilih data-data apa saja yang dia perlukan
+- sehingga jadinya tidak perlu transaksi data yang tidak perlu menggunakan graphQL
+- tapi yang BE harus menghandle semua kemungkinan logic Mutation dari FE
+
+Kekurangan pake graphQL
+- tidak sesederhana RestFulAPI
+- karena harus implementasi di Server (BE) dan Client (FE)

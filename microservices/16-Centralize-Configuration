@@ -1,0 +1,26 @@
+Centralized Configuration
+- ketika kita bikin aplikasi, hampir pasti ada konfigurasi
+- pertanyaannya, dimana kita akan menyimpan konfigurasi itu? 
+- ada beberapa opsi untuk menyimpan konfigurasi ini,
+1. Database
+2. File 
+3. Env Variabel
+
+Nah ada beberapa kendala yang harus kita pertimbangkan dalam penyimpanan konfigurasi
+1. Gimana semisalnya apabila konfigurasi berubah? Apakah aplikasi perlu di restrat?
+2. Keamanan dalam penyimpanan konfigurasi
+--- misalnya kalo di file, ketika server di susupi dan file itu diambil, maka terlihatlah semuanya
+
+- Jadi ini adalah pattern agar ada aplikasi untuk menyimpan semua konfigurasi tiap service
+- semua service akan bertanya ke aplikasi centralize configuration utk meminta confignya
+
+Keuntungannya
+- konfigurasi tsb akan bisa dienkripsi datanya, agar lebih aman
+- Beberapa aplikasi config malah ada feature logging nya
+
+Contoh aplikasi untuk menerapkan pattern ini
+- Hashicorp Consul (tapi gak bisa enkripsi data)
+- Hashicorp Vault (bisa enkripsi)
+- Etcd
+- Zookeper (punya org Java)
+- Doozerd

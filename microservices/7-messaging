@@ -1,0 +1,28 @@
+Masalah-masalah jika menerapkan RPI (Remote Procedural Invocation)
+pada service order service yang perlu hit email, sms, dan report service
+1. Karena service email dan sms biasanya lama maka service order akan jadi lama kalo nerapin RPI
+- kenapa? karena RPI ini sifatnya Syncronous, artinya proses berikutnya gak bisa jalan sebelum proses sebelumnya selesai
+- karena service order harus nunggu service email dan sms selesai dulu, maka akan pengaruh ke latency service order jadi lambat
+
+2. ngirim data yang sama berkali-kali ke semua service yang membutuhkan
+- jadi harus ngirim data order yang sama ke email, sms, finance, dan report service, padahal datanya itu2 aja
+
+
+
+Komunikasi dengan messaging
+1. Biasanya gak masalah jika pekerjaan itu dilakukan secara async
+-- kalo misalnya kita tau proses tersebut bergantung dari service lain, maka gak bisa nerapin ini
+-- misalnya order service butuh payament service success dulu baru bisa dilanjutkan
+
+2. gak perlu nunggu proses lain selesailah pokoknya
+3. gak perlu tau service lain sukses atau enggak, biar service tsb saja yang ngurus
+4. perlu message broker sebagai message channel seperti rabbitmq, kafka, google pubsub
+
+
+Contoh-contoh message Brocker
+- rabbitmq
+- kafka
+- google pubsub
+- redis pubsub
+- nsq
+- amazon web service sqs

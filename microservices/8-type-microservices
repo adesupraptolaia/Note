@@ -1,0 +1,31 @@
+### Terbagi jadi 3
+- Stateless Microservices
+- Persistance Microservices
+- Aggregation Microservices
+
+### Stateless
+- gak nyimpan data, biasanya gak punya database
+- biasanya untuk tugas-tugas sederhana
+- biasanya sebagai pembantu service lain
+- tidak bergantung service lain
+--- contoh email service dan sms service
+
+
+### Persistance
+- biasanya punya database
+- biasanya jadi master data untuk Microservices
+- biasanya melakukan pengolahan data
+--- contohnya customer service, product service, merchant service
+
+
+### Aggregation
+- sangat tergantung dengan service lain
+- biasanya jadi pusat business logic
+- bisa ada database atau tidak
+- tidak bisa berdiri sendiri
+--- contohnya cart service, payment service
+---- payment service harus melakukan pembayar ke payment gateway, dan setelah sukses bayar update order service, dan kemudian kirim email ke enduser
+
+
+ada beberapa pattern untuk komunikasi didalam Aggregation service
+1. service orchestration pattern

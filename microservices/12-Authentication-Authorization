@@ -1,0 +1,20 @@
+Authentication
+- adalah proses validasi kredensial
+- Seperti validasi username dan password
+- atau seperti validasi nomor hp dan otp
+
+
+Authorization
+- adalah validasi hak akses user
+- apakah user tersebut boleh mengakses halaman/resource tertentu
+- misalnya user tidak boleh mengakses halaman saldo user lain
+
+- biasanya kalo kita nerapin API Gateway
+- kita harusnya punya service auth
+- jadi tiap ada trafik masuk, maka API Gateway akan nanya ke atuh service
+- apakah user tsb boleh akses resource ini?
+- kalo kata service auth boleh, maka api gateway akan meneruskan trafik nya ke service2 bersangkutan
+
+- biasanya ketika API Gateway nanya ke atuh service, balikan dari atuh service adalah boleh/tidak + data2 authorization yg dibutuhkan oleh service yg dituju
+
+- biasanya data2 authorization ini seperti JWT Token, Secure Cookie, Oauth, Basic Auth, API key/secret key

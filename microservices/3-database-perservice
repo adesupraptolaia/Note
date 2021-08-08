@@ -1,0 +1,9 @@
+rekomendasi untuk microservices adalah menggunakan database masing-masing
+- intinya pilih database sesuai kebutuhan service nya
+
+
+kenapa tiap service punya database masing-masing?
+1. agar tidak saling ketergantungan
+-- agar ketika 1 service bermasalah, service lainnya tidak terganggu
+2. tiap service tidak perlu tau kompleksitas database service lain
+-- jika butuh data dari service lain, maka cukup minta aja ke service tsb

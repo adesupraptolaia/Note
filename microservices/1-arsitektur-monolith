@@ -1,0 +1,22 @@
+- ciri-ciri monolith biasanya :
+-- 1. single deployment unit, jadi yang dideploy 1 app saja
+-- 2. semua feature dan service ada di 1 app
+
+- lalu kalo mau bikin app apakah langsung bikin microservices?
+-- sebaiknya dibikin monolith dulu
+-- karena kita belum tau akan seberapa besar itu applikasi
+-- kita akan butuh banyak orang yang maintaince tiap service nya
+
+- kelebihan monolith
+-- 1. mudah didevelop
+-- 2. mudah dideploy
+-- 3. mudah ditest
+-- 4. mudah di scale
+
+
+- kekurangan monolith, yang kiranya kapan saatnya kita pindah ke microservices
+-- 1. untuk developer yang baru bergabung, maka ini akan sulit untuk menyesuaikan diri, karena tentunya langsung diperlihatkan pada source code yang besar yang mulai tidak teratur
+-- 2. bakal sulit scalling development dengan banyak developer, karena bayangin aja banyak developer ngerjain 1 source code, maka akan banyak conflict
+-- 3. kontrak panjang dengan teknologi tertentu
+-- 4. gak bisa scalling bagian tertentu saja
+-- 5. running app monolith akan berat, karena tentunya udah besar

@@ -1,0 +1,20 @@
+NoSQL = Not Only NoSQL
+
+kenapa butuh tau banyak NoSQL?
+- agar bisa menyesuaikan kebutuhan
+- bisa jadi alternatif dalam pengolahan data
+- 
+
+### Beberapa contoh NoSQL
+1. document oriented database
+- contohnya mongodb, biasanya kalo struktur coloumnnya bakal ribet, maka pakai mongodb saja
+2. key-value database
+- contohnya redis, biasanya untuk caching
+3. coloumn families database
+- contohnya apache cassandra, datanya berorientasi ke kolom, kolomnya bisa banyak banget
+4. graph database
+- contohnya neo4j, biasanya kalo mau mencari hubungan antar data
+5. search database
+- contohnya elastic search, biasanya khusus untuk peforma pencarian yang cepat
+6. Time series database
+- contohnya influx db, biasanya untuk loging ini bagus, kita bisa nyari data tertentu dengan waktu tertentu

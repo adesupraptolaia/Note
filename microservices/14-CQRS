@@ -1,0 +1,30 @@
+Command Query Responsibility Segregation (CQRS)
+
+- adalah proses pemisahan operasi command dan operasi Query
+- operasi command adalah operasi yang bersifat mengubah data (create, update, delete)
+- operasi Query adalah operasi yang bersifat pencarian (Get, Search)
+
+Kendala yang menyebabkan perlu CQRS
+- misalkan kita pake database mysql, dan datanya sudah banyak banget
+- agar Searchnya cepat, kita beri index di coloumn tertentu
+- tapi semakin banyak index, maka proses write mysql akan lambat
+- tapi kalo gak di index maka pencarian akan lambat
+
+Solusinya adalah pake CQRS, yaitu ada 2 database, satu untuk command, satunya lagi untuk Query
+- misalnya untuk command kita pakai sql, sedangkan untuk query kita pakai elastic Search
+- flownya, create => service => mysl => elastic_search
+- search => service => elastic_search => result
+
+keuntungannya
+- tentunya kita bisa milih database yang optimal sesuai kebutuhannnya
+--- kita bisa milih yang khusus search cepat
+--- kita bisa milih khusus bisa penyimpanan yang baik
+- tentunya peforma applikasi kita akan lebih baik karena databasenya sesuai
+- tentunya scopnya jadi lebih kecil sehingga tidak seribet jika digabungkan
+
+Ada cara lain, yaitu menggunakan 2 service yang berbeda, dan komunikasinya pake messaging
+- create => product_service => mysql => message_broker => consumer(product_search) => elastic_search
+- read => product_search => elastic_search => result
+
+kenapa baiknya pakai message_broker ?
+karena ketika save ke sql-nya success, maka save to elastic_search agar diatur oleh service search saja, semisalnya gagal di elastic_search ketika save, tinggal retry.

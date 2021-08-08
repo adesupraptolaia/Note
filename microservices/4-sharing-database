@@ -1,0 +1,6 @@
+- sebenernya gak ada standar baku dalam membangun microservices
+- sebenernya juga, sebaiknya database tiap service punya sendiri-sendiri
+- tetapi ada kalanya kita butuh menerapkan sharing database ini
+Kapan?
+- ketika baru pindah dari monolith ke microservices
+- ketika masih bingung memecah data tiap service

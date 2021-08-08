@@ -1,0 +1,20 @@
+- idealnya cara berkomunikasi antar service adalah dengan Remote Procedural Invocation/Call
+- jangan langsung call ke database service lain
+
+conto2nya
+1. RestfulAPI
+2. gRPC
+3. GraphQL
+4. Apache Thrift
+5. SOAP (Simple Object Access Protocol)
+6. Java RMI
+7. Corba (Common Object Request Broker Architecture)
+8. dll
+
+sebaiknya pakai yang paling banyak yana digunakan,
+agar tidak spesikfik dengan bahasa pemograman
+
+Keuntungan
+- sederhana dan mudah
+- sistemnya Request - Response
+- bisanya untuk systemnya Syncronous

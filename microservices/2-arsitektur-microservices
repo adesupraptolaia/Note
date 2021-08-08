@@ -1,0 +1,39 @@
+### ciri-ciri
+- beberapa applikasi kecil yang saling bekerjasama
+- 1 applikasi fokus utk 1 service
+- independent, tidak akan mengganggu applikasi lain jika akan diubah2
+- komunikasi antar service biasanya lewat network-call
+
+kelebihan 
+- mudah dimengerti, karena kecil
+- lebih mudah di maintain, di test, dan di deploy
+- lebih mudah ganti2 teknologi, karena tidak akan ganggu2 service lain
+- mudah discale sesuai kebutuhan
+- bisa dikerjakan tim2 kecil
+
+
+masalah-masalah di microservices
+- distibuted system : sistemnya banyak, terpisah2, dan saling terintegrasi
+- komunikasi antar service rawan error
+- integrasion testing rada tidak mudah
+
+cara membagi jadi service
+- biasanya dislit berdasarkan business domainnya
+
+- tapi kalo misalnya kamu belum ngerlu domain business nya maka bikin monolith dulu aja
+- kalo udah paham, baru mulai terapin microservices
+
+seberapa kecil microservices
+- fokus ke satu pekerjaan
+- sekecil mungkin sehingga mudah dimengerti 1 orang
+
+
+kelebihan monolith
+- simple
+- konsisten, karena tidak perlu call service2 lain
+
+kelebihan microservices
+- deploy hanya di service tertentu
+- kalo ada 1 service yang bermasalah, maka yang lain tidak akan terganggu
+- bisa pake teknologi yang berbeda2
+- mudah di scale berdasarkan kebutuhan

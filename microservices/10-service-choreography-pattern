@@ -1,0 +1,14 @@
+- komunikasi antar service nya pake messaging
+- kalo orchestration itu sangat complex, dia tau semua service2 lain
+- tapi kalo choreography lebih mengedepankan kemandirian oleh tiap-tiap service
+- tiap service tau apa yang harus dilakukan
+
+Keuntungan
+- tidak bergantung dengan service lain
+- akan lebih cepat, karena tidak perlu direct call ke service lain
+- jika ada Microservices baru, tidak perlu ada perubahan di Aggregation, cukup consume topic yang dipublish
+
+Kekurangan
+- sulit di debug, karena kita harus cek tiap service, apakah yang error ketika publish atau consume? atau apakah message brokernya error, dll.
+- kalo message brokernya mati, maka seluruhnya gak bisa jalan
+- 

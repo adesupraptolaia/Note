@@ -1,0 +1,35 @@
+Service Side Discovery
+- ketika di production pasti ada lebih dari 1 pod/note utk tiap service
+- misalkan kita punya 2 pod/node untuk sebuah sevice
+- nah, gimana caranya client tau dia nembak service yg mana, masa cuma 1 pod aja yg di hit? Ntar 1 pod lagi nganggur dong..
+- caranya dengan bikin router atau load balancer 
+- jadi client cukup hit load balancer, ntar load balancer yg bagi2 trafiknya
+- load balancer biasanya dipasang di tiap service
+
+Contoh Load Balancer
+- Nginx
+- Apache HTTPD
+- Traefik
+
+Kekurangannya
+- jika ada 100 service maka akan ada 100 load balancer, jadinya cost nya mahal
+--- nah, Kenapa gak bikin aja 1 load balancer utk semua service?
+--- ntar kalo trafiknya membludak, dan akhirnya load balacer gak kuat
+- minimal 2 pod load balancer utk tiap service agar menjaga availability nya
+--- jadinya makin mahal cost nya
+
+
+Client Side Discovery
+
+- artinha tiap client harus tau kemana ia akan hit service tsb
+--- jadi kalo servicenya ada 2 pod, maka client harus tau 2 lokasi service ini, dan client juga yg membagi trafiknya ke  pod service ini
+
+Keuntungannya
+- lebih murah karena kita gak perlu install load balancer yg banyak
+
+Kekurangan
+- client harus tau semua lokasi service
+---- bahkan ketika service nambah atau berkurang, client juga harus tau
+---- pikirin dah tu gimana caranya agar dia selalu tau lokasi tiap pod/node service
+- jika salah implementasi untuk distribusi trafik, maka bisa rugi
+--- bayangin aja ada 2 pod service, tapi karena salah implement, hanya 1 pod yg di hit, 1 pod lagi nganggur
