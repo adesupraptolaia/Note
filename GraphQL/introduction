@@ -98,3 +98,30 @@ type Post {
   title: String!
   author: Person!
 }
+
+
+### Security
+- jadi karena GraphQL ini sangat fleksibel, maka bisa saja disalah gunakan
+- Misalnya disalahgunakan oleh para hacker untuk merequest data yang sangat-sangat besar
+- Ataupun digunakan oleh client_internal tapi penggunaannya juga sangat besar
+- Nah ini bisa saja berakibat server kita down
+
+- Ada beberapa cara untuk mengatasi hal ini, kita akan bahas dari yang termudah
+1. Terapkan Timeout
+-- misalnya kita terapkan Timeout 5 detik
+-- jadi semua request yang kiranya membutuhkan waktu 5 detik, kita anggap itu request yang tidak baik
+-- kelebihannya : mudah diterapkan, paling banyak diterapkan
+-- kekurangan : memutus koneksi ditengah2 bisa menyebabkan behavior yang ganjil/aneh
+-- kekurangan : ya ketika timeoutlah damage nya selesai
+
+2. Terapin maksimal depth/kedalaman Query
+- intinya diterapkan maksimal kedalamannya berapa, jadi kalo lewat dari itu ya tolak
+- kelebihannya : ya gak perlu proses yang querynya ribet sampe dalem2
+- kekurangan : gak semua query berat bisa dihandle oleh ini, misalnya kalo querynya sesuai depth-nya, tapi data yang diminta berat2 ya sama aja
+
+3. Query Complexity
+- intinya define sejak awal tiap query mempunyai nilai berapa untuk Complexity
+- karena query A dan query B bisa saja mempunyai comlexitas berbeda, sehingga cara nomor 2 tidak selalu efektif
+-- kelebihan : cover lebih banyak case yang dihandle instead of cara nomor 2 | query lebih cepat dideteksi sebagai query yang tidak baik
+-- kekurangan : sulit untuk menetapkan Complexity dengan sempurna
+
