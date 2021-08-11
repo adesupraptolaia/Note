@@ -1,0 +1,35 @@
+Open Close Principle
+- suatu class harus close for modification but open for extension
+- jadi kalo mau nambahin feature, jangan ngubah2 isi classnya, Seperti hapus method A
+- bisa aja kita cukup buat baru Subclass dari main class, sehingga feature yg baru cukup diterapkan di Subclass tsb
+
+======= Contoh Awalnya
+Class Robot {
+    - func Talk() {}
+    - func Walk() {}
+}
+
+- lalu kita ingin robotnya lebih canggih dengan nambahin feature terbang dan kill kecoa
+- lalu kita berfikir untuk menghapus feature Walk karena merasa tidak perlu karena sudah ada feature Terbang
+
+======= Berikut contoh penambahan feature yang salah
+Class Robot {
+    - func Talk() {}
+    - func Fly() {}
+    - func KillKecoa() {}
+}
+
+- ini salah karena kita sudah mengubah class Robot
+- Kenapa ini salah dan tidak direkomendasikan?
+- karena jika semisalnya ada service-service yang sedang berjalan ternyata menggunakan method Walk()
+- pasti akan menyebabkan error dimana-mana
+
+======= Berikut contoh yang benar
+Class Robot {
+    - func Talk() {}
+    - func Walk() {}
+}
+Class ModernRobot extends Robot {
+    - func Fly() {}
+    - func KillKecoa() {}
+}

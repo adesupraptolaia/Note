@@ -1,0 +1,48 @@
+Software Architecture
+1. Message Broker
+    - keuntungan : agar service tidak saling bergantung
+    - keuntungan : jika ada 1 yang lambat, maka yang cepat tidak perlu menunggu yang lambat
+    - solusi jika ada yang lambat : buat service jadi banyak
+    - kekurangan : jika message broker mati, maka semua yang service yang triggernya dari message broker akan mati
+    - solusi : pilih message broker yang bagus, seperti rabbit mq atau kafka
+2. Service Discovery
+    - misalnya 1 service akan lambat banget
+    - maka service yang lambat tsb akan kita buat beberapa node
+    - nah cara agar bisa mendistribusikan dengan baik adalah menggukan proxy server
+    - contoh proxy server apllikasinya nginx, dan apache HTTPD
+    - service discovery adalah : mencari service secara otomatis di jaringan kita
+    - install applikasi service registry
+    - contohnya consul dan  eureka
+    - idealnya service kita nanya ke service registry tiap 5 atau 10 detik
+    - idealnya, kalo ada node baru, maka node baru akan ngasih info ke service registry
+    - lalu service registry akan health check ke tiap service
+    - agar bisa mendistribusikan secara merata jumlah hit, maka kita bisa menggunakan client load balancer
+3. JSON WEB TOKEN
+    - studi kasus :  agar tiap service tau tentang auth enduser
+    - maka kita bisa menggunakan service auth, tapi ini
+    - json web token adalah method standar agar pertukaran data yang aman.
+    - JWT Header : base64 dari data string json, isinya algoritma untuk hashing nya.
+    - JWT payload : base64 dari payload yang dibutuhkan, biasanya isinya data umum tidak sensitive
+    - JWT Signature : ada sercret key yang membedakan
+    - btw JWT itu agar bisa dipakai bersama oleh service2 berbeda, maka JWT simpan ke cookies agar disimpan di browser
+4. database scalling
+    - scalling secara vertikal itu dengan cara updgrade hardware
+    - scalling horizontal berarti bikin node baru, sehingga bisa dibagi2.
+    - contoh 1TB dibagi jadi 4 250GB tiap nya
+    - masalahnya adalah kemana kita harus insert data jika ada 4 database
+    - biasanya kita hasing primary key menjadi angka, lalu dimodulo sejumlah database, ===> cara routing
+    - lalu bagaimana cara searching?
+5. cara integrasi applikasi
+    - sharing file : dengan cara tiap applikasi generate file secara reguler dan file tsb akan dikonsumsi oleh applikasi lain
+    - sharing database : asalakan ada koneksinya, tapi harus hati2 jika ada perubahan struktur table database tsb
+6. application scalling
+    - vertical scalling : upgrade ram / cpu dll
+    - horizontal scalling : tambah node, lalu ada load balancer
+    - non-blocking : pake message broker ?
+    - reactiveX : membeda2kan worker untuk tiap feature, harapannya jika ada feature yang lagi sibuk, maka feature lain gak terganggu
+    - slit aplikasi : pisahkan service yang kira-kira bakal buuth scalling
+    - scalling database : misalnya karena query lambat dll
+    - pakai tool bantuan : bisa pakai kubernets dll
+    - optimize code : bisa lihat API atau feature mana yang peforma nya jelek
+    - aggressive catching : misalnya query ke database lambat atau nembak ke service lain lambat, yang mana kegiatan ini akan dilakukan secara terus menerus, tapi datanyanya gak banyak berubah, maka ini perlu di catching.
+7. sdfssfd

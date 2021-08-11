@@ -1,0 +1,51 @@
+Liskov Subtitution Principle
+- setiap child class yang merupakan turunan dari parent class, maka harus memiliki sifat dan perilaku yang sama dengan parent-nya
+- artinya jika parent class memiliki method A, B, C, dst
+- maka child class tidak boleh menghilangkan sifat2/method2 tsb
+- yang diperbolehkan hanya meng-override sifat/method tsb agar sesuai dengan child-class
+- jadi tetap intinya child class tidak menghilangkan sifat/method dari parent class, tetapi hanya merubah
+
+==== Contoh yang salah
+Class Bebek {
+    - func swim() { "do-something" }
+    - func kwekKwek() { "do-something" }
+    - func eat() { "do-something" }
+}
+Class BebekMainan extends Bebek {
+    @override
+    - func eat() { "DO-NOTHING" }
+}
+
+- karena bebek-mainan gak bisa makan
+- makanya dioverride untuk tidak melakukan apapun ketika func eat() dipanggil
+- nah ini akan melanggar Liskov Subtitution Principle
+
+---> contoh case
+- bayangin saja jika sistem kita udah berjalan
+- lalu ada service yang memanggil class Bebek dan semua turunannya
+- tentunya service ini akan berfikir bahwa namanya bebek beserta turunannya pasti bisa makan
+- tapi ketika BebekMainan dipanggil dan gak bisa makan, maka ini tidak sesuai ekspektasinya service tsb dan mungkin  saja menyebabkan error di service tsb
+
+---> solusi
+- Class BebekMainan kalo emang gak bisa nerapin feature eat()
+- gak semestinya menjadi turunan Class Bebek
+- bisa aja menjadi turunan Class Mainan atau sebagainya
+
+
+===== Contoh yang benar
+Class Bebek {
+    - func swim() { "do-something" }
+    - func kwekKwek() { "do-something" }
+    - func eat() { "do-something" }
+}
+Class Itik extends Bebek {
+    @override
+    - func eat() { "cara-makannya-itik" }
+}
+
+- Class Itik tetap memiliki sifat/method eat()
+- tetapi cara makannya menyesuaikan dengan itik miliki
+
+
+- Subtitution : pergantiann
+- bisa aja digantikan, tapi tidak dihilangkan

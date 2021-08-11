@@ -1,0 +1,69 @@
+======== Parallel Programming
+- sekarang (2021) zamannya processor semuanya multicore
+- karena hardware makin canggih, maka software biasanya akan mengikuti
+- sekarang kita makin mudah membuat proses paralel di aplikasi kita
+- parallel programming adalah memecahkan masalah dengan cara membaginya menjadi kecil-kecil, dan kemudian dijalankan dijalankan secara bersamaan
+
+contoh parallel
+- menjalankan beberapa aplikasi sekaligus di sistem operasi kita
+--- misal kita buka office dan browser sekaligus
+- di restoran yang ada banyak kokinya
+--- ada 5 koki misalnya, maka 5 koki ini masing-masing akan membuat masakan yang berbeda dalam waktu yang bersamaan
+- di bank yang ada bankyak teller
+--- ada 5 teller misalnya, maka 5 teller ini akan bisa melayani 5 pelanggan di waktu yang bersamaan
+
+### Perbedaan Process dan Tread
+Process, ciri-cirinya:
+- sebuah eksekusi program
+--- misalnya kita buka browser, office, spotify setiap aplikasi yang kita buka ini dinamakan process
+- mengkonsumsi memory yang cukup besar
+--- buka browser atau office pasti akan banyak makan memory
+- saling terisolasi dengan process lain
+--- kalo kita buka office dan browser, maka mereka tidak saling terhubung
+- lama untuk di start dan di stop
+--- misalnya buka adobe photoshop itu lama
+
+Thread, ciri-cirinya:
+- segmen dari process
+--- analoginya seperti kita buka browser, lalu di browser tsb kita buka berapa tap, nah tap-tap inilah yang dinamakan Thread
+- menggunakan memory kecil
+- thread saling berhubungan dalam 1 process yang sama
+- thread cepat untuk di start dan di stop
+
+
+====== Perbedaan dengan Concurrency
+- paralle menjalankan beberapa pekerjaan secara bersamaan, sedangkan Concurrency menjalankan beberapa pekerjaan secara bergantian (tidak bersamaan / di waktu yang berbeda)
+- Parallel membutuhkan banyak tread, sedangkan Concurrency hanya butuh sediki thread, karena pekerjaannya dilakukan secara bergantian
+
+
+### Contoh Concurrency
+- ketika kita dicafe, kita bisa makan, lalu ngobrol, lalu kita minum, lalu makan lagi, lalu minum, lalu ngobrol ladi, dan seterusnya
+- tetapi perlu digaris bawahi adalah, Concurrency tidak dijalankan bersamaan, melainkan bergantian
+- kan gak mungkin kita makan dan minum disaat bersamaan, melainkan kita bergantian antara makan dan minum
+
+
+### Concurrency di Golang
+- Golang sebenernya konsepnya Concurrency bukan Parallel
+- tapi karena sekarang rata-rata hardware udah multicore, makan seakan-akan golang ini menjadi campuran antara paralel dan Concurrency
+- karena Concurrency-nya bisa dijalankan secara bersamaan di beberapa core dari hardware tsb
+- tapi tidak perlu khawatir gimana cara melakukan proses Concurrency di golang, karena sudah diatur secara default oleh golang, jadi kita cukup menggunakannya saja
+
+========= CPU-Bound
+- banyak algoritma yang dibuat hanya butuh CPU untuk menjalankannya
+--- Algoritma jenis ini biasanya sangat tergantung dengan kecepatan CPU, semakain cepat CPU makan semakin cepat process algoritma ini
+- contoh algoritma ini adalah Machine Learning.
+-- banyak teknologi Machine Learning yang menggunakan GPU (Graphical Processing Unit)
+-- karena GPU ini punya lebih banyak core dibandingkan CPU
+- utk algoritma ini, kita tidak terlalu mandapatkan manfaat Concurrency, malah lebih baik kita menggunakan bahasa yang mendukung paralel programming seperti python ataupun java
+
+--- intinya aplikasi yang memafaatkan CPU-Bound, golang tidak direkomendasikan, lebih di rekomendasikan bahasa yang basisnya thread, seperti python, java
+
+
+========= I/O-Bound
+- kebalikan dari CPU-Bpund
+- algoritma atau aplikasi yang sangat tergantung dengan kecepatan input dan output device yang digunakan
+- contoh aplikasinya : baca data di file, database, call third party, call service lain
+- jadi aplikasi dengan I/O-Bound lebih disarankan menggunkana bahasa yang mendukup Concurrency, karena tidak akan ada blocking
+- bayangkan misalnya kita perlu baca data dari database dan butuh 1 detik untuk dapat datanya, daripada kita menunggu 1 detik, mending kita pindah ke pekerjaan lainnya menggunakan konsep Concurrency ini
+
+ 

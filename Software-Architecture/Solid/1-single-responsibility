@@ -1,0 +1,48 @@
+Single Responsibility Principle
+- jangan bikin class yang superclass
+- superclass maksudnya, class tsb bisa melakukan apapun, bisa A, bisa B, bisa D, dst
+- melainkan bikin class yang punya tanggung jawab spesifik
+- jadi buat class yang dimana class itu bisa mencapai 1 tujuan tertentu
+- jika kita lihat class tsb bisa ngelakuin banyak hal
+- maka pisahkan hal-hal yang diluar tugas utamanya
+
+===== Contoh yang salah
+Class Car {
+    - func TurnOnCar() {}
+    - func TurnOffCar() {}
+    - func TurnOnAirConditioner() {}
+    - func TurnOffAirConditioner() {}
+    - func PlayMusic() {}
+}
+
+- jika sekilas dilihat, class tsb normal-normal saja
+- tapi ternyata class tsb sudah memiliki tanggung jawab yang tidak spesifik
+
+- jika kita lihat, class tsb bisa :
+-- hidup matikan mobil
+-- hidup matikan AC
+-- play music
+
+
+===> harusnya dipisahkan menjadi
+Class Car {
+    - var ac AirConditioner
+	- var music Music
+    - func TurnOnCar() {}
+    - func TurnOffCar() {}
+}
+Class AirConditioner {
+    - func TurnOnAirConditioner() {}
+    - func TurnOffAirConditioner() {}
+}
+Class Music {
+    - func PlayMusic() {}
+}
+
+- kenapa dibuat seperti itu?
+- bayangin aja kalo semuanya digabung didalam 1 class Car
+- jika ada bug, kita akan sulit mendeteksinya, apakah bugnya di AC atau bugnya di Music ? karena semua dalam 1 class Car
+- kalo kita pisahkan seperti diatas, maka nanti akan spesifik akan tugasnya
+- dan ketika ada bug, kita cukup ngedebug pada class yang spesifik tadi
+- nah nantinya jika ada bug pada class AC, kita akan mudah mendeteksinya
+- dan juga ketika memperbaiki class AC, kita tidak takut akan merusak kelas lainnya karena ia terpisah dengan yang lainnya

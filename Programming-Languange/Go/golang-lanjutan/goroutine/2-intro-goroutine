@@ -1,0 +1,16 @@
+- goroutine ini ibaratnya thread ringan, tapi sebenernya bukan thread
+- gorotine ini berjalan diatas thread dan dikelola oleh go-runtime
+- ukuran goroutine ini sangant ringan, sekitar 2kb
+--- berbeda dengan thread, butuh 1mb/1000kb untuk buat 1 thread
+- kalo thread berjalan dengan parallel, maka goroutine berjalan secara concurrent di dalam sebuah thread
+
+
+Cara Kerja goroutine
+- goroutine dijalankan di dalam threadnya Go-Scheduler
+- jadi ya yang ngatur gorotine ini adalah si Go-Scheduler
+- didalam Go-Scheduler ada banyak thread
+- jumlah thread di dalam Go-Scheduler biasanya sebanyak GOMAXPROCS (biasanya sejumlah core CPU)
+
+
+goroutine -> thread -> Go-Scheduler -> Go-Runtime
+
