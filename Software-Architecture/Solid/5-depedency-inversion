@@ -1,0 +1,64 @@
+Depedency Inversion Principle
+- high level module gak boleh bergantung pada low level module
+- tetapi high & low level module bergantungnya pada abstraction
+- lalu abstraction tidak boleh bergantung dengan detail
+- tetapi detail-lah yang bergantung dengan abstraction
+
+- gimana sih maksudnya? ibaratnya di aplikasi kita ada hal-hal yang bersifat global dan bersifat detail
+
+- global biasanya gak mudah berubah ==> contohnya feature nyimpan data user
+- detail biasanya bisa berubah-ubah ===> contohnya awalnya nyimpan pake firebase diubah jadi nyimpan pake mysql
+
+- nah mereka berdua ini harus dipisahkan dengan abstraction
+- jadi abstraction ini ibaratnya seperti kontrak
+- jadi ada kontrak yang harus ditaati oleh global dan detail ini
+- sehingga global dan detail bekerja dan berkomunikasi harus sesuai kontrak ini
+
+
+======== Contoh yang salah
+type User struck {
+    nama string
+    email string
+}
+func saveUser(user User) {
+    - connect to firebase
+    - save user to firebase
+}
+
+- jika Depedency-nya harus berubah dari firebase ke mysql maka harus seperti ini
+
+func saveUser(user User) {
+    - connect to mysql
+    - save user to mysql
+} 
+
+
+====== Contoh Bener
+
+type User struck {
+    nama string
+    email string
+}
+type Database Interface() {
+    func save(User) bool
+}
+===== save using firebase
+type firebase struck {}
+func (*firebase) save(user User) bool {
+    - connect to firebase
+    - save data
+}
+==== save using mysql
+type mysql struck{}
+func (*mysql) save(user User) bool {
+    - connect to firebase
+    - save data
+}
+==== main function
+func saveUser(user User) {
+    db := Database(firebase)
+    // or
+    db := Database(mysql)
+
+    db.save(user)
+}

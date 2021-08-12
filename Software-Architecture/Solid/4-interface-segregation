@@ -1,0 +1,98 @@
+Segregation Interface Priciple
+- Prinsip Pemisahan Interface
+- jika perlu membuat interface, buatlah interface tsb spesifik untuk tujuan tertentu
+- jangan sampai class yang nge-extend Interface tsb harus nge-implement hal-hal gak dibutuhkannya
+
+
+===== Contoh Jelek
+Interface Skills {
+    - func heal() {}
+    - func castMagic() {}
+    - func stealMoney() {}
+}
+Class Hero implement Skills {
+    - func regularAttack() {}
+}
+-------- hero spesifik -----
+Class HeroA extends Hero {
+    @override
+    - func castMagic() { "DO-NOTHONG" }
+    @override
+    - func stealMoney() { "DO-NOTHONG" }
+}
+Class HeroB extends Hero {
+    @override
+    - func heal() { "DO-NOTHONG" }
+    @override
+    - func stealMoney() { "DO-NOTHONG" }
+}
+Class HeroC extends Hero {
+    @override
+    - func heal() { "DO-NOTHONG" }
+    @override
+    - func castMagic() { "DO-NOTHONG" }
+}
+
+- kalo diperhatikan:
+- method heal(), castMagic() dan stealMoney() tidak selalu diperlukan oleh tiap-tiap spesifik Hero
+- ini tidak baik dan menyalahi aturan Interface Segregation
+
+--- kenapa tidak baik?
+- bayangkan aplikasi sudah running dan ada service yang memanggil semua Class Hero dan turunannya
+- nah ketika service ini memanggil method heal(), castMagic() dan stealMoney() dari tiap-tiap Hero tadi
+- akan ada gagal atau error ketika memanggil method tertentu untuk hero tertentu
+- nah, padahal expektasi dari service tsb adalah tiap Hero akan punya skill sesuai dengan interface yang sudah diterapkan
+
+- kalo pun misalnya mau diterapkan if-else untuk hero tertentu hanya bisa skill tertentu
+-  ini akan membuat codingan jadi panjang dan ribet, karena tiap nambah hero baru akan akan ada perubahan lagi di codingan service tsb
+- tentunya ini akan rentan rusak codingan di service tadi
+
+
+
+====== Contoh bener
+Class Hero {
+    - func regularAttack() {}
+}
+Interface Magician {
+    - func castMagic() {}
+}
+Interface Stealer {
+    - func stealMoney() {}
+}
+Interface Healer {
+    - func heal() {}
+}
+
+
+---------- spesifik Hero ------
+Class HeroA extends Hero implement Healer {
+    @override
+    - func regularAttack() { "do-something" }
+    @override
+    - func healer() { "do-something" }
+}
+Class HeroB extends Hero implement Magician {
+    @override
+    - func regularAttack() { "do-something" }
+    @override
+    - func castMagic() { "do-something" }
+}
+Class HeroC extends Hero implement Stealer {
+    @override
+    - func regularAttack() { "do-something" }
+    @override
+    - func stealMoney() { "do-something" }
+}
+
+
+- dengan begini tidak ada lagi method2 yang tidak digunakan
+- kedepannya pun jika kita ingin membuat hero baru yang bisa heal dan steal, maka cukup bikin seperti ini
+
+Class HeroX extends Hero implement Healer, Stealer {
+    @override
+    - func regularAttack() { "do-something" }
+    @override
+    - func heal() { "do-something" }
+    @override
+    - func stealMoney() { "do-something" }
+}
