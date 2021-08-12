@@ -2,6 +2,7 @@ package goroutine
 
 import (
 	"fmt"
+	"runtime"
 	"testing"
 	"time"
 )
@@ -30,13 +31,14 @@ func TestCreateGoroutine(t *testing.T) {
 */
 
 func DisplayNumber(number int) {
-	fmt.Println("Display Number", number)
+	fmt.Println("jumlah goroutine", runtime.NumGoroutine(), "number", number)
 }
 
 func TestCreateManyGoroutine(t *testing.T) {
-	for i := 0; i < 1000000; i++ {
+	for i := 0; i < 1000; i++ {
 		go DisplayNumber(i)
 	}
 
-	time.Sleep(10 * time.Second)
+	time.Sleep(5 * time.Second)
+	fmt.Println("jumlah goroutine", runtime.NumGoroutine())
 }

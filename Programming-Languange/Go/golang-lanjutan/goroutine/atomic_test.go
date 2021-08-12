@@ -9,6 +9,7 @@ import (
 
 /*
 - atomic adalah package untuk menggunakan data primitive secara aman pada proses concurrent
+- data primitive itu seperti int, float, bolean, string
 - mutex locking ---> counter++ ---> mutex unlocking ===> ini sebenarnya bisa pakai atomic package
 - selebihnya bisa dilihat di
 https://golang.org/pkg/sync/atomic/
