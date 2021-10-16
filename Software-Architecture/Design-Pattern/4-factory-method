@@ -36,3 +36,38 @@ menjadi ===> tiger = AnimalFactory.Create("Tiger")
 - keuntungannya apa?
 - misalnya if new Tiger() ganti menjadi new Tiger2() karena suatu hal
 - maka cukup ubah di AnimalFactory method 'create' if name=tiger return new-object-tiger2
+
+
+===============================================================
+
+Contoh kasusnya adalah ketika perusahaan logistik awalnya memiliki service pengiriman lewat darat menggunakan truk.
+Lalu perusahaan tsb makin berkembang dan perlu menambahkan service pengiriman lewat air menggunakan kapal.
+Sebenernya tugas truk dan kapal sama-sama mengirim barang, tapi tetap saja mereka objek berbeda.
+Sehingga kita harus membuat if else untuk menghandlenya.
+Bayangannya begini. [ newTruck.Deliver !== newShip.Delivery ] sehingga harus handle dengan code yang berbeda. sehingga
+[
+        if truck {
+                - sending signal
+                - get data to validate
+                - update to database the thing is sending
+                - recieving signal
+                - get data to validate
+                - update to database the thing is recieve
+        } else if ship {
+                - send signal
+                - get data to validate
+                - update to database the thing is sending
+                - recieve signal
+                - get data to validate
+                - update to database the thing is recieve
+        }
+]
+Lalu yang jadi masalah lagi, misalnya perusahaan expand lagi, kita bisa kirim barang via udara menggunakan pesawat,
+maka tentunya codenya makin panjang.
+Meskipun hal yang sama yang diulang. Tapi bayangin aja, karena codenya terlalu besar dan berantakan gitu, ketika kita perlu namabahin suatu handler A, bisa saja kita hanya nambahin handler tsb ke truck dan kapal, dan lupa untuk nambahin ke pesawat. Sehingga akhirnya akan ada error di production.
+
+- Factory Method adalah method yang dapat menghasilkan object yang berbeda-beda.
+- object yang dihasilkan dari Factory/Pabrik itu harus mengikuti 1 buah kontrak/interface yang sama.
+- di method factory, kamu perlu nambahin argumen/parameter untuk membedakan object apa yang akan dibuat
+- Ibaratnya seperti Pabrik yang bisa menghasilkan product-product yang berbeda.
+- Misalnya ada pabrik mobil. Pabrik tsb bisa mengeluarkan mobil-mobil yang berbeda seri/type. Tapi tentunya mobil-mobil ini tetap sudah mengikuti template/interface/kontrak mobil yang sudah ditetapkan pabrik tsb.

@@ -1,0 +1,31 @@
+- Kalo di Database Relational, ada contrains di tiap kolomnya
+- misalnya type_data, not null, dll
+- nah di mongo untuk membuat contrains kamu bisa menggunakan Schema Validation
+- yaitu menggunakan prinsip JSON Schema
+
+- JSON Schema adalah standar resmi dalam validation data berbentuk JSON
+- dengan JSON Schema kamu bisa mendefine seperti apa data JSON yang kamu anggap valid 
+
+#### kamu bisa create validation jsonSchema sejak awal ketika bikin collection
+
+db.createCollection('nama_collection', {
+    validationAction: "error", // atau "warning"
+    validator: {
+        $jsonSchema: {
+            // json schema
+        }
+    }
+})
+
+
+### kamu juga bisa nambahin validation jsonSchema meskipun collection tsb sudah dibuat
+
+db.runCommand({
+    collMod: 'nama_collection',
+    validationAction: "error", // atau "warning"
+    validator: {
+        $jsonSchema: {
+            // json schema
+        }
+    }
+})

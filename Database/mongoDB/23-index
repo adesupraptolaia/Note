@@ -1,0 +1,19 @@
+- tanpa indexing, maka mongo akan melakukan query dengan cara collection scan (artinya mencari keseluruh data dari awal sampai akhir di collection tsb)
+- index adalah stuktur data khusus sehingga nantinya data akan mudah dicari
+- selain menyimpan field yang akan di index, MongoDB juga bisa mengurutkannya, yang sangat berguna untuk pagination (1: asc, 2: desc)
+
+
+- single index
+--- seperti pada umumnya
+
+- compound indexes
+--- indexing terhadap lebih dari 1 field
+--- maksimal 32 field
+--- perlu diperhatikan,
+--- misalnya kamu bikin index (1,2,3)
+--- maka yang bisa diindex jika kamu query thdp (1), (1,2), (1,3), (1,2,3) 
+
+
+
+- pakai explain() untuk melihat apakah kamu melakukan query by index atau tidak
+- jika iya, maka stage : IXSCAN

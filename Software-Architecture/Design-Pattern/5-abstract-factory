@@ -20,3 +20,10 @@ contoh penerapan
 - GameEasy : GameFactoryInterface ===> return ArenaEasy, LevelEasy, EnemyEasy ===> dan seterusnya
 
 - ketika create new-Instance ===> gameEasy = new Game(GameEasy)
+
+
+=============================================
+
+- Abstract Factory
+- mirip seperti factory method, tapi ini akan ada beberapa factory yang mengikuti sebuah abstract
+- Biasanya dipakai jika ketemu kasus, product2 tsb bisa dibikin faktory nya. Tapi ternyata tiap product tadi akan didetailkan lagi terkait terkait jenis/varian/model nya.

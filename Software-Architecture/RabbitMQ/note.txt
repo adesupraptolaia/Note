@@ -1,0 +1,47 @@
+====== rabbitmq ibaratnya seperti tukang pos, bisa nerima dan nerusin message
+-> rabbitnq menyimpan dan meneruskan message dan bentuk binary
+
+-> prouducer ===> program yang mengirim message
+-> queue ===> seperti kotak surat. Ada banyak buffer di queue
+-> consumer ====> program uang menerima message
+
+-> prouducer, consumer, dan broker tidak harus berada di host yang sama
+-> sebuah applikasi bisa menjadi prouducer dan consumer sekaligus
+
+
+-> exchange yang kosong artinya pakai exchange default
+-> sesuaikan routing-key antara publisher and consumer
+
+-> manfaatkan "ack" untuk memastikan bahwa message/task telah diterima dan diselesaikan oleh consumer
+-> ketika consumer telah menyelesaikan task dari message yang dikirim rabbitmq, maka consumer harus kirim ack() ke rabbitmq untuk message tsb
+-> tujuannya agar rabbitmq mengetahui bahwa message tsb sudah diterima dengan success oleh consumer dan sudah boleh untuk dihapus
+-> jika rabbitmq belum menerima ack tsb maka rabbitmq akan mencoba mengirim
+
+Communication on Syncronous
+-> sender harus tau alamat penerima
+-> kedua service yang berkomunikasi harus sama-sama live
+-> baru akan selesai ketika sender sudah mendapatkan balasan dari reciever
+-> message kontraknya ditentukan oleh reciever
+-> mudah di trace
+-> contoh ==> Rest, GRPC, RPC
+
+
+Asyncronous
+-> sender dan reciever cukup tau lokasi broker
+-> service-service tsb tidak harus lagi hidup
+-> gak perlu nunggu proses reciever selesai
+-> messagenya durable atau non-durable
+---> durable adalah ketika broker restart, dia masih ada atau enggak
+-> ada pull (consumer) dan push (reciever)
+
+==== proses messaging di rabbitmq
+-> ketika sender kirim message ke broker, maka pertama kali akan diproses oleh exchange-nya broker
+-> exchange ini mirip seperti router
+-> nah ketika exchange sudah menentukan message tsb masuk direct, fanout, atau topic, barulah akan dikirim ke queue
+-> queue akan ngirim ke reciver yang aktif
+
+
+==== tipe-tipe exchange rabbitmq
+-> direct exchange
+---> dikirim berdasarkan routing key
+---> dipakai ketika 

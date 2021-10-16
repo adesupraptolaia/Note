@@ -1,46 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Belajar Vue</title>
+    <style>
+        .active {
+            background-color: salmon;
+        }
+    </style>
 </head>
+
 <body>
     <div id="app">
-        <h1>Hello VueJS</h1>
-        <h1>Nama : {{ nama }}</h1>
-        <h1>Umur : {{ umur }}</h1>
-        <h1>Method getName : {{ getName("Kaka") }}</h1>
+        <h1>========== Init didalam ranah VUE ==========</h1>
+        <h4>Binding Expression : {{ nama }}</h4>
+        <h4>Binding Expression : {{ nama }}</h4>
+        <h4>Method getName : {{ getName("Kaka") }}</h4>
 
-        <h1>Compute kaliSepuluh {{ kaliSepuluh }} </h1>
-        <h1>Method umurKaliSepuluh() {{ umurKaliSepuluh(umur) }} </h1>
+        <h4>Compute kaliSepuluh {{ kaliSepuluh }} </h4>
+        <h4>Method umurKaliSepuluh() {{ umurKaliSepuluh(umur) }} </h4>
+
+        <a v-bind:href=" nama + umur.toString()">contoh Attribute Binding</a>
+
+        <h4>Contoh Event - umur => {{ umur}}
+            <button v-on:click="umur++">tambah-umur</button>
+            <button v-on:click="umur--">kurangi-umur</button>
+        </h4>
+
+        <h4>Class Binding {{ menu }}</h4>
+        <button v-bind:class="{active: menu==='home'}" v-on:click="menu='home'">Home</button>
+        <button v-bind:class="{active: menu==='about'}" v-on:click="menu='about'">About</button>
+        <button v-bind:class="{active: menu==='blog'}" v-on:click="menu='blog'">Blog</button>
+
+        <h4>Two Way Data Binding</h4>
+        <input type="text" v-model="twoWayDataBinding">
+        <br>
+        {{ twoWayDataBinding }}
+
+        <h4>Contoh v-for</h4>
+        <ul>
+            <li v-for="i in 5">{{ i }}</li>
+            <li v-for="i in [2,5]">{{ i }}</li>
+        </ul>
+
+        <h4>Contoh v-if</h4>
+        <h5 v-if="umur%2 === 0">Genap</h5>
+        <h5 v-else>Ganjil</h5>
+        {{ umur }}<button v-on:click="umur++">tambah-umur</button>
+
+        <h4>Contoh Event {{ menu }}</h4>
+        <a v-bind:class="{active: menu==='home'}" v-on:click="eventCoba('home', $event)" href="#">Home</a>
+        <a v-bind:class="{active: menu==='about'}" v-on:click="eventCoba('about', $event)" href="#">About</a>
+        <a v-bind:class="{active: menu==='blog'}" v-on:click="eventCoba('blog', $event)" href="#">Blog</a>
+
+        <h4>Membuat Component</h4>
+        <header-component title="Ini title">
+        </header-component>
+
+        <!-- <kelas v-bind:itemsaja="dataKelas" v-on:submitemit="submit($event)" v-on:hapusfromemit="hapusKelas"></kelas> -->
+        <home>
+            <p>Ini dari slot pak</p>
+        </home>
+
+
+        <router-link to="/">Home</router-link>
+        <router-link to="/about">About</router-link>
+        <router-link to="/kelas">kelas</router-link>
+
+        <router-view v-bind:itemsaja="dataKelas" v-on:submitfromchild="submit($event)" v-on:hapusfromemit="hapusKelas"></router-view>
+
+        <h1>========== Akhir ranah VUE ==========</h1>
     </div>
+    
+
+
+    <h1>================= Catatan ================</h1>
+
+    <h2>Binding Expression</h2>
+    <p>
+        - kamu bisa input Expression javascript didalam ini "{{ }}" <br>
+        - bisa juga memasukkan data-data dari vue
+        - contoh {{ data }}
+    </p>
+
+    <h2>Directive</h2>
+    <p>
+        - Fungsi yang disediakan vueJS, seperti v-html, v-text, v-once <br>
+        - v-html="bisa-berisi-perintah-javascript" <br>
+        - contoh ==> v-html="variable.toUpperCase()"
+    </p>
+
+    <h2>Attribute Binding</h2>
+    <p>
+        - kita bisa melakukan operasi javascript pada property-attribute html
+        - tapi kita harus nambahin "v-bind:" didalamnya, atau bisa juga pakai "@" <br>
+        - contoh ==> v-bind:href="link-from-data" atau @href="{{link-from-data}}" atau @href="operasi-js"
+    </p>
+
+    <h2>Event</h2>
+    <p>
+        - biasanya pake "v-on:event"
+        - kamu bisa menulis js Expression maupun function
+    </p>
+
+    <h2>Class Binding</h2>
+    <p>
+        - kamu bisa memanipulasi class-class pada suatu tag html
+        - cara penggunaan class="{nama-class1 : true/false, nama-class2 : true/false}"
+        - bisa juga cara lain dengan pakai array, tapi isinya harus variable di data
+        - contoh class="[classVarData1, classVarData2]"
+    </p>
+
+    <h2>Two Ways Data Binding</h2>
+    <p>
+        - biasanya kamu mau ngikat inputan form dengan data di Vue
+        - jadi data di vue bisa berubah2 sesuai inputan form
+        - pake v-model="varDataVue" ya pak
+    </p>
+
+    <h2>v-for</h2>
+    <p>
+        - untuk perulangan
+    </p>
+
+    <h2>v-if v-else v-show</h2>
+    <p>
+        - kalo v-if dan v-else tidak akan merender tag yang tidak memenuhi kondisi
+        - kalo v-show selalu merender
+    </p>
+
+    <h2>Event</h2>
+    <p>
+        - bisa pakai function ataupun expression js langsung
+    </p>
+
+    <h2>Event Modifier</h2>
+    <p>
+        - jadi kamu bisa modif event langsung di v-on nya
+        - v-on:click.modifier
+        - modifier ===>
+        .stop
+        .prevent
+        .capture
+        .self
+        .once
+        .passive
+    </p>
+
+    <h2>Key Modifier</h2>
+    <p>
+        - mirip seperti event modifier
+        - v-on:keyup.modifier
+        - modifier ===>
+        .enter
+        .tab
+        .delete (captures both “Delete” and “Backspace”
+        keys)
+        .esc
+        .space
+        .up
+        .down
+        .left
+        .right
+    </p>
+
+    <h2>Membuat Component</h2>
+    <p>
+        - intinya buat component biar bisa di reuse
+    </p>
+
+    <h2>Props</h2>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
+
     <script>
+        const home = {
+            template: `
+            <div>
+                <h2>Ini Home</h2>
+                <slot></slot>
+            </div>
+           `
+        }
+        const about = { template: "<h1>About</h1>" }
+
+        const Kelas = {
+            props: ['itemsaja'],
+            template: `
+            <div>
+                <label>Tambah Kelas</label>
+
+                <form v-on:submit.prevent="submitfromchild">
+                    <label for="judul">Judul</label>
+                    <br>
+                    <input type="text" id="judul" name="judul" v-model="kelas.judul" />
+                    <br>
+
+                    <label for="deskripsi">Deskripsi</label>
+                    <br>
+                    <textarea name="deskripsi" id="deskripsi" v-model="kelas.deskripsi" ></textarea>
+
+                    <br>
+                    <button type="submit">Submit</button>
+                </form>
+
+                <h3>Daftar Kelas</h3>
+                <ul>
+                    <li v-for="(item, index) of itemsaja">{{ index+1 }} - {{ item.judul }}
+                        <a href="" v-on:click.prevent="$emit('hapusfromemit', item.id)">hapus</a>
+                    </li>
+                </ul>
+            </div>
+            `,
+            data: function () {
+                return {
+                    kelas: {
+                        judul: '',
+                        deskripsi: ''
+                    }
+                }
+            },
+            methods: {
+                submitfromchild: function () {
+                    console.log('kelas', this.kelas)
+
+                    this.$emit('submitfromchild', this.kelas)
+                }
+            }
+        }
+
+        const router = new VueRouter({
+            routes: [
+                { path: '/', component: home },
+                { path: '/about', component: about },
+                { path: '/kelas', component: Kelas }
+            ]
+        })
+
+
+        // // membuat component
+        Vue.component('header-component', {
+            props: ['title'],
+            template: `
+            <div>
+                <h2>Ini Header Component</h2>
+                <p v-text="pesan"></p>
+                <p> {{ title }} </p>
+            </div>
+            `,
+            data: function () {
+                return {
+                    pesan: 'Hello Component'
+                }
+            }
+        })
+
+        // Vue.component('kelas', {
+        //     props: ['itemsaja'],
+        //     template: `
+        //     <div>
+        //         <label>Tambah Kelas</label>
+        //         <input type="text" v-on:keyup.enter="$emit('submitemit', $event)"/>
+        //         <h3>Daftar Kelas</h3>
+        //         <ul>
+        //             <li v-for="(item, index) of itemsaja">{{ index+1 }} - {{ item }}
+        //                 <a href="" v-on:click.prevent="$emit('hapusfromemit', index)">hapus</a>
+        //             </li>
+        //         </ul>
+        //     </div>
+        //     `,
+        //     data: function () {
+        //         return {
+        //             kelasbaru: '',
+        //             kelas: ['Golang']
+        //         }
+        //     },
+        //     methods: {
+        //         submit: function () {
+        //             this.kelas.push(this.kelasbaru)
+        //             this.kelasbaru = ""
+        //         }
+        //     }
+        // })
+
         // cara create new object vue
         const vm = new Vue({
             el: '#app', // element dimana object vue diterapkan
+            router,
+            components: {
+                'home': home,
+                'about': about,
+                'Kelas': Kelas,
+            },
             data: { // inisiasi data yang digunakana
                 nama: 'Ade',
-                umur: 27
+                umur: 27,
+                menu: 'home',
+                twoWayDataBinding: 'two-way-data',
+                dataKelas: [
+                    {id: 1, judul: 'Golang'},
+                    {id: 2, judul: 'Java'}
+                ]
             },
             methods: { // membuat method2 yang ada
                 getName: (nama) => {
-                    return `Hello ${nama}` 
+                    return `Hello ${nama}`
                 },
                 umurKaliSepuluh: (umur) => {
                     return umur * 10
+                },
+                eventCoba: function (msg, e) {
+                    e.preventDefault()
+                    this.menu = msg
+                },
+                submit: function (event) {
+                    console.log('event', event)
+                    this.dataKelas.unshift({
+                        id: uuidv4(),
+                        judul: event.judul,
+                        deskripsi: event.deskripsi
+                    })
+                },
+                hapusKelas: function (id) {
+                    this.dataKelas = this.dataKelas.filter(item => item.id !== id)
+                    console.log("id", id)
                 }
             },
             computed: { // method2 yang menggunakan langsung nilai2 di 'data', jangan pake arrow function pak, karena gak bisa pake this
-                kaliSepuluh: function() {
+                kaliSepuluh: function () {
                     return this.umur * 10
                 }
             }
         })
-        console.log(vm)
     </script>
 </body>
+
 </html>

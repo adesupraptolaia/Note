@@ -1,0 +1,28 @@
+- cloud native adalah pendekatan untuk membuat dan menjalankan aplikasi sehingga bisa memanfaatkan modern could native secara maksimal
+
+- agar aplikasi kita bisa berjalan dengan baik di modern cloud platform, maka kita harus perhatikan "12 factor app"
+
+1. Codebase
+- 1 source-code harus ada di 1 repository dan bisa di deploy dimana-mana
+- versioning code di local, di stagging, di production harus sama
+- jadi tidak akan ada perbedaan behaviour antara production, stagging, dan local
+- kemudian kita tentunya akan mudah dalam mendebug aplikasi kita di local jika di production terjadi error
+
+2. depedency
+- semua depedency harus bisa diakses secara public, jangan sampai depedency hanya bisa ada di productin, sedangkan di local tidak bisa
+- kalo sekarang mah depedency udah diatur oleh package manager
+- jadi dimanapun environment menjalankan aplikasi, selama package manager ada
+- maka kita bisa meginstall semua depedency yang dibutuhkan
+- kemudian aplikasi tidak boleh tergantung dengan tools yang lain
+
+3. config
+- yang membedakan aplikasi kita di stagging, local, dan production hanyalah config
+- meng-hardcode config/credential adalah hal yang terlarang
+- 3 hal yang harus dipisahkan adalah: code, config, dan credential
+- perlakukan 3 hal tsb seperti bahan berbahaya, jika mereka digabungkan maka akan meledakF
+- bayangkan source code kita dijadikan open source atau public access
+- maka gimana caranya credential kita tidak terbaca oleh orang lain, begitulah pendekatan bagaimana menyimpan credential kita
+- kamu bisa menyimpan config di file
+- tapi sebaiknya simpan config di environment variable
+
+
