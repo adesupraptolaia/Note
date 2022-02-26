@@ -1,0 +1,326 @@
+beberapa basic type data di elixir
+iex> 1          # integer
+iex> 0x1F       # integer
+iex> 1.0        # float
+iex> true       # boolean
+iex> :atom      # atom / symbol
+iex> "elixir"   # string
+iex> [1, 2, 3]  # list
+iex> {1, 2, 3}  # tuple
+
+
+=================== Basic Aritmatika ===================
+```
+iex> 10 / 2
+5.0
+```
+Operator `/` di elixir akan mengembalikan float (5.0).
+
+Jika mau mendapatkan hasilnya dalam integer, gunakan operator `div`.
+operator `div` sama seperti floor di math-function.
+```
+iex(10)> div(17,3)
+5
+```
+
+Jika mau mendapatkan module, gunakan `rem`
+```
+iex(11)> rem(10,3)
+1
+```
+
+Elixir mengizinkan kita untuk TIDAK menggunakan kurung ketika mengakses fungsi yang punya minimal 1 argument/parameter.
+```
+iex> div(10, 2)
+5
+iex> div 10, 2
+5
+iex> rem 10, 3
+1
+```
+
+Binary, Octal, and Hexadecimal in elixir
+iex> 0b1010 # binary
+10
+iex> 0o777 # octal
+511
+iex> 0x1F # hexadecimal
+31
+
+Scientific notation
+```
+iex> 1.0e-10
+1.0e-10
+```
+
+Float di Elixir adalah 64-bit double precision.
+
+round untuk mendapatkan bilangan integer terdekat.
+trunc untuk mendapatkan angka integernya saja.
+```
+iex> round(3.58) # to get
+4
+iex> trunc(3.58)
+3
+```
+
+
+=================== Mengidentifikasi Fungsi dan Dokumentasi ===================
+Di Elixir, fungsi diidentifikasi dari nama dan arity.
+Arity dari sebuah fungsi adalah jumlah argument yang dibutuhkan fungsi tsb.
+
+Cara membaca dokumentasi fungsi di elixir:
+trunc/1 ===> fungsi yang bernama trunc yang memerlukan 1 argument
+trunc/2 ===> fungsi yang bernama trunc yang memerlukan 2 argument
+
+cara mendapatkan help/dokumentasi dari fungsi trunc/1, cukup tambahkan h didepannya:
+```
+iex> h trunc/1
+```
+
+Sebenarnya, kamu harus mengikutsertakan nama module sebelum mendapatkan dokumentasinya.
+Karena `trunc/1` berada pada module `Kernel`, yang bisa disebut module bawaan.
+```
+iex> h Kernel.trunc/1
+```
+
+
+=================== Boolean ===================
+```
+iex> true
+true
+iex> true == false
+false
+```
+
+
+
+=================== Atoms ===================
+
+atom adalah konstan di Elixir. 
+Diawali dengan tanda `:`.
+Beberapa bahasa lain menyebut ini dengan symbol.
+
+Biasanya digumakan untuk menyatakan state dari operasi.
+misalnya :ok atau :error
+
+sebenernya, boolean true dan false adalah atom.
+nilai true = :true dan false = :false
+```
+iex> false === :false
+true
+```
+
+Alias utk atom ==> awali huruf dengan Uppercase
+```
+iex> is_atom(Hello)
+true
+```
+
+
+=================== Strings ===================
+
+string di elixir dibatasi dengan double-qoute `"`
+string di elixir diencode dalam UTF-8
+
+elixir mendukung string interpolation. `#{}`
+```
+iex> string = :world
+iex> "hellö #{string}"
+"hellö world"
+```
+
+String di elixir dinyatakan sebagai bytes yang berurutan. atau disebut dengan biner.
+```
+iex> is_binary("hellö")
+true
+```
+
+Kita juga bisa mendapatkan jumlah bytes yang digunakan string tersebut.
+```
+iex> byte_size("hellö")
+6
+```
+
+Meskipun panjang karakter tsb adalah 5, tapi jumlah byte nya adalah 6.
+Itu disebabkan oleh karakter `ö` memilki 2 bytes.
+
+Untuk mendapatkan panjang karakter, gunakan
+```
+iex> String.length("hellö")
+5
+```
+
+Kumpulan fungsi untuk string bisa dilihat di
+https://hexdocs.pm/elixir/String.html
+
+
+
+=================== Anonymous Function ===================
+
+cara define Anonymous func di elixir. dibatasi dengan fn dan end
+```
+iex> add = fn a, b -> a + b end
+iex> add.(1, 2)
+3
+iex> is_function(add)
+true
+```
+
+cara memaggil fungsi nya harus menambah `.` seperti berikut
+```
+iex> add.(1,4)
+5
+```
+
+variable disekitar function anonymous tidak akan berubah nilainya.
+```
+iex> x = 42
+42
+iex> (fn -> x = 0 end).()
+0
+iex> x
+42
+```
+
+
+=================== (Linked) Lists ===================
+
+list di elixir dapat diisi type data apa saja.
+```
+iex> [1, 2, true, 3]
+[1, 2, true, 3]
+```
+
+dua list dapat di gabungkan dengan operator `++/2`
+dua lit dapat di kurangi dengan operator `--/2`
+```
+iex> [1, 2, 3] ++ [4, 5, 6]
+[1, 2, 3, 4, 5, 6]
+iex> [1, true, 2, false, 3, true] -- [true, false]
+[1, 2, 3, true]
+```
+
+pada operator `--/2` caranya adalah dengan hapus elemen terkat dari head.
+
+operator `++/2` dan `--/2` tidak akan memodify list yang ada, tetapi akan menghasilkan list baru.
+
+Data structure di elixir IMMUTABLE.
+Salah satu keuntungan sifat IMMUTABLE adalah `clearer code`.
+Kita bisa secara bebas menggunakan data secara bebas tanpa takut datanya berubah di memory. kita hanya mentransformnya.
+
+pada topik list, kita akan banyak bicara tentang head dan tail dari list.
+head of list ===> element pertama dari list
+tail of list ===> element2 lain selain head
+```
+iex> list = [1, 2, 3]
+iex> hd(list)
+1
+iex> tl(list)
+[2, 3]
+```
+
+`hd` dan `tl` jika diapply pada empty list `[]`
+
+Kadang-kadang jika list berisi urutan ASCII, misal
+([104, 101, 108, 108, 111]) ==> "hello"
+maka akan mereturn string.
+
+perhatikan bahwa:
+single-qoute ==> charlist
+double-qoute ==> string
+
+gunakan fungsi `i/1` untuk mendapatkan detail informasi.
+```
+iex> i 'hello'
+Term
+  'hello'
+Data type
+  List
+Description
+  ...
+Raw representation
+  [104, 101, 108, 108, 111]
+Reference modules
+  List
+Implemented protocols
+  ...
+```
+
+
+=================== Tuples ===================
+
+Ini seperti array di bahasa pemograman lain.
+```
+iex> {:ok, "hello"}
+{:ok, "hello"}
+iex> tuple_size {:ok, "hello"}
+2
+```
+
+Tuples menyimpan elemennya secara berdampingan di memory.
+Sehingga mengakses element di tuple dengan index atau mendapatkan panjang tuple menjadi sangat cepat.
+```
+iex> tuple = {:ok, "hello"}
+{:ok, "hello"}
+iex> elem(tuple, 1)
+"hello"
+iex> tuple_size(tuple)
+2
+```
+
+Cara mengubah elemen di tuple
+```
+iex> tuple = {:ok, "hello"}
+{:ok, "hello"}
+iex> put_elem(tuple, 1, "world")
+{:ok, "world"}
+iex> tuple
+{:ok, "hello"}
+```
+
+Perhatikan bahwa, setiap operasi yang dikenakan pada tuple, maka akan menghasilkan tuple baru.
+Karena tuple juga bersifat IMMUTABLE.
+
+
+
+=================== Lists or tuples? ===================
+LIST
+List akan disimpan sebagai linked list dimemory.
+Linked list seperti tali, dari bagian head sampai tail.
+setiap element akan menyimpan value dan point nya berada dimana, hingga ujung linked list.
+1 -> 2 -> 3 -> 4 -> 5
+
+Artinya, ketika ingin mengetahui panjang linked list, kamu perlu berjalan dari awal hingga akhir dari element linked list.
+
+Sama halnya dengan peforma concate 2 linked list, ini akan bergantung dari panjang linked list sebelah kiri
+```
+iex> list = [1, 2, 3]
+[1, 2, 3]
+
+# ini lebih sedikit karena kita hanya perlu berjalan pada `[0]` untuk menabahkan `list`
+iex> [0] ++ list
+[0, 1, 2, 3]
+
+# lebih lambat, karena kita harus berjalan sepanjang `list`, meskipun kita hanya menambahkan `[4]`
+iex> list ++ [4]
+[1, 2, 3, 4]
+```
+
+TUPLE
+tuple sendiri akan disimpan dengan secara berdampingan di memory, sehingga mengakses element dan dan mendapatkan ukuran akan jauh lebih cepat.
+Tetapi, update dan menambahkan element pada tuple jauh lebih mahal karena ia akan membuat tuple baru.
+
+Perhatikan bahwa penerapan ini hanya berlaku untuk tuplenya sendiri, bukan untuk element-ement di dalam tuple tsb.
+Jadi, ketika elemen di tuple di update, maka kan muncul tuple bwaru, tetapi element nya tetap akan disharing antara tuple baru dan tuple lama, kecuali jika element itu telah diubah.
+Tuple dan List di elixir capable untuk sharing content di memory, ini menjadikanya lebih hemat dan ini hanya mungkin dilakukan untuk immutable semantics of the language.
+
+
+Ketika menghitung jumlah elemens di data structure, Elixir mempunyai aturan:
+function `size` waktu operation-nya constant (pre-calculated).
+function `length` waktu operation-nya liner, semakin besar ukurannya, semakin lama waktu menghitungnya.
+
+contohnya ketika kita ngehitung size `byte_size("hellö") = 6` dan `String.length("hellö")=4`.
+size hanyalah ukuran byte dari hello, tapi length harus menghitung jumlah Unicode graphemes.
+
+Elixir juga ada type data `Port`, `PID`, dan `Reference` yang biasanya digunakan untuk komunikasi antar proses. Tapi akan dibahas di sub-bahasan lain.
