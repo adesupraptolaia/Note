@@ -1,0 +1,31 @@
+misalnya kita ada applikasi yang butuh menampilkan notifikasi,
+tentunya notifikasi ini harus bersifat real-time.
+aneh jika notifikasinya muncul jika user harus refresh halaman terlebih dahulu.
+
+ada beberapa cara untuk menghandle ini.
+1. Ajax
+===> Secara periodik (misal tiap 5 detik) call API notification.
+Jika menerapkan ini, mungkin butuh 1 service yang terima trafik notifikasi.
+agar service lain tidak tergangu ketika trafiknya banyak.
+
+2. Long Polling
+===> client juga hit secara periodik. Tapi bedanya, apabila belum ada perubahan apa-apa di notification.
+server tidak akan langsung memberikan responsenya (masih ditahan).
+Hingga akhirnya jika sudah ada perubahan notification, barulah server memberikan response ke client.
+Untuk bahasa-bahasa atau teknologi yang memiliki batas connection-dari-client, ini bukan pilihan bagus.
+karena ketika quota connection-client tsb penuh, maka yang lain tidak bisa melakukan request.
+pilih yang mendukung non-blocking, jangan pilih yang thread pool.
+
+3. Server sent event
+===> client akan open connection ke server, lalu connection tsb akan di tahan oleh server. hingga connection tsb di close.
+ketika ada update notifikasi, server akan kirim dari connection tadi.
+tapi perlu di note bahwa, connection ini hanya dipakai oleh server untuk kirim notif tadi,
+jadi untuk case chat, connection ini gak bisa dipakai untuk kirim balasan chat.
+
+
+4. web socket.
+===> cilent dan server akan mengcreate sebuah connection 2 arah. 
+artinya client dan server bisa sama-sama mengirim message melalui connection tsb.
+
+source:
+(link)[https://www.youtube.com/watch?v=w_rOM943vCw&ab_channel=ProgrammerZamanNow]
